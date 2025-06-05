@@ -1,0 +1,23 @@
+.heading {
+    color: white;
+    background-color: purple;
+
+}
+
+/* #heading{
+        color: white;
+        background-color: purple;
+       } */
+
+/* attributes - class, ID */
+
+.button {
+    background-color: skyblue;
+    color: blue;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+p{
+    background-color: blue;
+}
