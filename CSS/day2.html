@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         /* px , vw, vh, % */
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        /* span{
+            display: block;
+            background-color: blue;
+            border: 2px solid black;
+            margin: 20px;
+        } */
+
+        h1{
+            display: inline;
+            background-color: yellow;
+            padding: 20px;
+            margin: 20px;
+        }
+        h2{
+            display: inline;
+        }
+        ul{
+            background-color: lightblue;
+            height: 80px;
+            padding: 25px;
+        }
+
+        ul li{
+            display: inline;
+            padding: 10px;
+            margin-left: 35px;
+            font-size: 30px;
+            border-radius: 15px;
+        }
+
+        ul li:hover{
+            background-color: black;
+            color: white;
+        }
+
+        .container{
+            height: 80px;
+            
+            border: 2px solid black;
+            margin: 30px;
+            /* padding: 20px; */
+        }
+
+        /* .container:hover{
+            background-color: blue;
+            height: 100px;
+        } */
+
+        /* pseudo class selector */
+        .container:active{
+            background-color: yellow;
+        }
+
+        input:focus{
+           
+            border: 5px solid purple;
+        }
+        span{
+            width: 50%;
+            height: 50%;
+            display: inline-block;
+            /* background-color: red; */
+        }
+
+        /* descendent selector */
+        .container span{
+            background-color: purple;
+        }
+
+        /* child selector */
+        .container>p{
+            background-color: yellow;
+        }
+
+        /* immediate sibling  */
+        span+p{
+            font-size: 35px;
+        }
+
+        /* all sibling */
+        span~p{
+            font-weight: 800;
+        }
+
+
+    </style>
+</head>
+<body>
+  
+    <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Career</li>
+        <li>Contact</li>
+    </ul>
+
+    <div class="container">
+       <span>Block level element 
+        <span>Inside span tag</span>
+       </span>
+       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, nobis!</p>
+       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi molestias, iste beatae corrupti obcaecati a totam modi facere hic itaque.</p>
+    </div>
+
+    <div style="height: 50px;">
+        <input style="padding: 35px; width: 500px;" type="text">
+    </div>
+
+
+</body>
+</html>
