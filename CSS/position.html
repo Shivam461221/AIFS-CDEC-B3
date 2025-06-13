@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Position</title>
+    <style>
+        body {
+            height: 1500px;
+        }
+
+        /* .container{
+            height: 200px;
+            width: 500px;
+            background-color: purple;
+            position:relative;
+            top: 100px;
+            left: 200px;
+            /* right: 200px; 
+        } */
+
+        .container {
+            height: 400px;
+            border: 2px solid black;
+            position: relative;
+            /* top: 200px; */
+            /* margin: 100px; */
+        }
+
+
+        /* .box-2{
+            height: 200px;
+            width: 500px;
+            background-color: rgb(128, 62, 0);
+            position: fixed;
+            bottom: 10px;
+            left: 200px;
+        } */
+
+        .box-2{
+             height: 200px;
+            width: 500px;
+            background-color: rgb(128, 62, 0);
+            position: sticky; 
+            top: 10px;
+            left: 20px;
+        }
+
+        /* sticky - relative + fixed */
+
+        .circle {
+            height: 180px;
+            width: 180px;
+            background-color: blueviolet;
+            border-radius: 50%;
+            position: absolute;
+            top: 109px;
+            /* bottom: 300px; */
+            left: 641px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="circle"></div>
+    </div>
+
+    <div class="box-2"></div>
+
+</body>
+
+</html>
