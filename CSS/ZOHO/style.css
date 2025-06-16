@@ -47,16 +47,17 @@
 
  .inner-1 {
      display: flex;
-     height: 250px;
-
+     min-height: 250px;
      justify-content: space-between;
  }
 
  .meeting {
-     width: 650px;
+     max-width: 650px;
      box-shadow: 0 5px 5px grey;
      padding: 40px;
      border-radius: 10px;
+     min-height: 250px;
+     margin-right: 10px;
  }
 
  .meeting p {
@@ -66,10 +67,11 @@
  }
 
  .webinar {
-     width: 650px;
+     max-width: 650px;
      box-shadow: 0 5px 5px grey;
      padding: 40px;
      border-radius: 10px;
+     min-height: 250px;
  }
 
  .webinar p {
@@ -124,3 +126,8 @@
  .material-symbols-outlined {
      font-size: 35px;
  }
+ /* @media (min-width:600px) and (max-width:700px) {
+    .child{
+        background-color: white;
+    }
+ } */
