@@ -1,0 +1,68 @@
+.container {
+    height: 500px;
+    border: 2px solid black;
+}
+
+.circle {
+    height: 100px;
+    width: 100px;
+    /* border-radius: 50%; */
+    background-color: red;
+    transition: transform 1s ease-in-out;
+    animation: typing 1s steps(13) forwards infinite;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+}
+
+.text {
+    font-size: 36px;
+    width: fit-content;
+    border-right: 2px solid #000;
+    animation: typing 4s steps(13) forwards, blink 0.5s infinite;
+}
+
+/* .circle:hover{
+    transform: translateX(300px)
+} */
+
+@keyframes bounce {
+
+    /* from{transform: translateX(0px) }
+    to{transform: translateX(300px) } */
+    0% {
+        transform: translateY(500px);
+    }
+
+    50% {
+        transform: translateY(0px) scale(1.4);
+    }
+
+    100% {
+        transform: translateY(500px)
+    }
+}
+
+@keyframes rotate {
+    form {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: fit-content;
+    }
+}
+
+@keyframes blink {
+    50%{
+        border-color: transparent;
+    }
+}
