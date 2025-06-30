@@ -1,0 +1,32 @@
+<script>
+    //print even numbers from 1 to 100
+
+    for(let i=1; i<=100;i++){
+        if(i%2==0){
+            console.log(i);
+        }
+    }
+
+    //print odd numbers from 1 to 100
+    for(let i=1; i<=100;i++){
+        if(i%2!=0){
+            console.log(i);
+        }
+    }
+
+    //factorial - 5 - 5*4*3*2*1  =120
+    //3 = 3*2*1
+    let num = 1*prompt('Enter a number');
+
+    let factorial = 1;
+
+    for(let i=num-1; i>=1; i--){
+        console.log(factorial);
+        factorial += factorial*i;// factorial = factorial + factorial*i
+    }
+
+
+    console.log(factorial);
+
+    //123 = 1^3 + 2^3 + 3^3  = armstrong number
+</script>

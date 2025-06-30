@@ -15,9 +15,11 @@
 
 .text {
     font-size: 36px;
-    width: fit-content;
+    width: 0ch; /* Start with 0 characters visible */
+    overflow: hidden;
+    white-space: nowrap;
     border-right: 2px solid #000;
-    animation: typing 4s steps(13) forwards, blink 0.5s infinite;
+    animation: typing 5s steps(13) forwards infinite, blink 0.5s step-end infinite;
 }
 
 /* .circle:hover{
@@ -57,7 +59,7 @@
     }
 
     to {
-        width: fit-content;
+        width: 23ch;
     }
 }
 
