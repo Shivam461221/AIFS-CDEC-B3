@@ -1,0 +1,26 @@
+<script>
+    //reverse a string 
+    let name = 'Sagar';
+
+    //name.split('')  =  ['S','a','g','a','r'];
+    //reverse() = ['r','a','g','a','S'];
+    //join('') = ragaS;
+
+    let revName = name.split('').reverse().join('');
+    console.log(revName);
+
+    //Palindrome check
+    //12321, madam
+    let word = '12321';
+     let revWord = word.split('').reverse().join('');
+     console.log(revWord);
+
+     if(word === revWord){
+        console.log('Palindrome');
+     }
+     else{
+        console.log('Not Palindrome');
+     }
+
+
+</script>

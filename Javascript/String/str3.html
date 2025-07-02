@@ -1,0 +1,32 @@
+<script>
+    //string methods
+
+    //substring method 
+
+    let name = 'CloudBlitz';
+
+    console.log(name);
+
+    let name1 = name.substring(0,5);   //(strating index, ending index)  but it will exclude last index
+    console.log(name1);
+
+    let name2 = name.substring(3);  //starting index
+    console.log(name2);
+
+    let name3 = name.substring(5,10);
+    console.log(name3);
+
+
+    //program to replace a character in a string
+    name = name.substring(0,5) + 'A' + name.substring(6);
+    //first I extract a substring from index 0 to 4 - Cloud
+    //then I concat A in substring  - CloudA
+    //then I extract a substring from index 6 to end - litz
+    //then I concat all strings  - CloudAlitz
+    //then I assigned these into name variable
+    console.log(name);
+
+    
+
+
+</script>
