@@ -1,0 +1,49 @@
+<script>
+    //function with return type
+
+    // function getEvenOrOdd(x){
+    //     if(x%2===0){
+    //         console.log('Even');
+    //     }
+    //     else{
+    //         console.log('Odd');
+    //     }
+
+    //     console.log('Function bottom');
+    // }
+
+    // getEvenOrOdd(11);
+    // getEvenOrOdd(10);
+
+    function getEvenOrOdd(x){
+        if(x%2===0){
+            return 'Even';
+        }
+
+        else{
+            console.log('Else block')
+            return 'Odd';
+        }
+
+        console.log('Function bottom');
+    }
+
+    // let answer = getEvenOrOdd(11);
+
+    // console.log(answer);
+
+    function numCheck(x){
+        if(x>0){
+            return 'Positive';
+        }
+        else if(x<0){
+            return 'Negative';
+        }
+
+        return 'Zero';
+    }
+
+    let ans = numCheck(0);
+
+    console.log(ans);
+</script>
