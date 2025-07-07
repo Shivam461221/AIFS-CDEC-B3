@@ -1,0 +1,25 @@
+<script>
+    //Callback function - A callback function is a function in JS 
+    // which passed as an argument of another function
+
+    function greet(name, callback){
+        console.log('Hello '+ name);
+        callback(name);
+    }
+
+    function sayGoodBye(name){
+        console.log('Goodbye '+name);
+    }
+
+    greet('Shivam', sayGoodBye);
+
+    setTimeout(()=>{
+        console.log('Hello again');
+    }, 5000);
+
+    setTimeout(function(){
+        console.log('Normal function')
+    }, 3000);
+
+    
+</script>

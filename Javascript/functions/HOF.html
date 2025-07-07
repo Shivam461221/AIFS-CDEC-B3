@@ -1,0 +1,20 @@
+<script>
+    //HOC - Higher Order Function is function in JS which takes a 
+    // function as an argument and return a function
+
+    function performOperation(num1, num2, operation ){
+        return operation(num1, num2);
+    }
+
+    let sum =(a,b)=> a+b;
+
+    let multiply=(a,b)=> a*b;
+
+    let result =  performOperation(10, 20, multiply);
+
+    console.log(result);
+
+
+    //HOC - Map, Filter, reduce
+
+</script>
