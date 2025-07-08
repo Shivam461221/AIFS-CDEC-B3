@@ -1,0 +1,30 @@
+<script>
+    //filter - filter function iterates over an array and return 
+    // a new array with specific conditions ot passes test cases
+    //the length of new array will be same or shorter
+
+     let arr = [1,2,3,4,5,6,7,8];
+
+     console.log(arr);
+
+     let even = arr.filter((element)=>element%2===0);
+
+     let odd = arr.filter(element=>element%2!==0);
+
+     console.log(even);
+     console.log(odd);
+
+     let users = [
+        {name:'sagar', age:22},
+        {name:'Swaleha', age:21},
+        {name:'Megha', age:20},
+        {name:'Aditi', age:22},
+        {name:'Yash', age:23}
+    ];
+    console.log(users);
+
+    let voters = users.filter((user)=>user.age>=22);
+    console.log(voters);
+
+
+</script>
