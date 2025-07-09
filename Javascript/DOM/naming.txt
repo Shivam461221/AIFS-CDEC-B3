@@ -1,0 +1,5 @@
+
+1.PascalCase - FirstLetter   (java)
+2.camelCase -   firstSecond  (JS, Java)
+3.snake_case -  user_data  (SQL)
+4.kebab-case -   background-color  (CSS)

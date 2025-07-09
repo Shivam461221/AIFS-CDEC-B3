@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../../HTML/image-1.png" height="200" width="200" alt="">
+    <br>
+    <button id="increase">Increase Size</button>
+    <button id="decrease" onclick="decreaseSize()">Decrease Size</button>
+    <script>
+        // function changebackground() {
+        //     document.body.style.backgroundColor = 'red';
+        // }
+
+        // .class, #id. tagname, descendent selector
+
+        function increaseSize(){
+            let img = document.querySelector('img');
+            img.width += 20;
+            img.height += 20;
+        }
+
+         function decreaseSize(){
+            let img = document.querySelector('img');
+            img.width -= 20;
+            img.height -= 20;
+        }
+
+        let increaseButton = document.getElementById('increase');
+
+        increaseButton.addEventListener('click', increaseSize);
+
+
+    </script>
+</body>
+
+</html>
