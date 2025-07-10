@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #upper img{
+            height: 400px;
+            width: 400px;
+        }
+
+        #lower img{
+            height: 60px;
+            width: 60px;
+            margin-right: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div id="upper">
+        <img id="main" src="images/angular logo.png" alt="">
+    </div>
+    <!-- <div id="lower">
+        <img onclick="swapImage(this)" src="images/bootstrap-tutorial.png" alt="">
+        <img onclick="swapImage(this)" src="images/css logo.png" alt="">
+        <img onclick="swapImage(this)" src="images/html logo.png" alt="">
+        <img onclick="swapImage(this)" src="images/java-logo-vert-blk.png" alt="">
+    </div>  -->
+
+    <div id="lower">
+        <img onmouseover="swapImage(this)" src="images/bootstrap-tutorial.png" alt="">
+        <img onmouseover="swapImage(this)" src="images/css logo.png" alt="">
+        <img onmouseover="swapImage(this)" src="images/html logo.png" alt="">
+        <img onmouseover="swapImage(this)" src="images/java-logo-vert-blk.png" alt="">
+    </div> 
+    <script>
+
+       
+
+        // function swapImage(imgObject){
+        //    let main = document.getElementById('main');
+
+        //    let temp = main.src;
+        //    main.src = imgObject.src;
+        //    imgObject.src = temp;
+           
+        // }
+
+         function swapImage(imgObject){
+           let main = document.getElementById('main');
+
+           //let temp = main.src;
+           main.src = imgObject.src;
+          // imgObject.src = temp;
+           
+        }
+
+    </script>
+</body>
+</html>
