@@ -12,8 +12,13 @@
     </style>
 </head>
 <body>
-    <div>
-
+    <div id="div">
+        <ul>
+            <li>Item-1</li>
+            <li>Item-2</li>
+            <li>Item-3</li>
+            <li>Item-4</li>
+        </ul>
     </div>
 
     <script>
@@ -23,18 +28,25 @@
         //     alert('Mouse clicked');
         // })
 
-        div.onclick = function(){
-            alert('Mouse clicked');
-        }
+        // div.onclick = function(){
+        //     alert('Mouse clicked');
+        // }
 
         //  div.addEventListener('mouseover', function(){
         //     alert('Mouse over');
         // })
 
-        // div.addEventListener('mouseout', function(){
+        // div.addEventListener('mouseout', function(event){
         //     alert('Mouse out');
+        //     event.target.textContent = 'Hello';
         // });
 
+        let list = document.querySelector('ul');
+
+        list.addEventListener('click', function(event){
+            alert(event.target.textContent);    
+            event.target.textContent = 'Clicked';  
+          });
 
     </script>
 </body>

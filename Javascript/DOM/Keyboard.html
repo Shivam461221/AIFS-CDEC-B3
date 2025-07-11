@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        div{
+            height: 200px;
+            border: 2px solid purple;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        p{
+            height: 50px;
+            min-width: 50px;
+            background-color: black;
+            color: white;
+            font-size: 28px;
+            padding: 7px;
+            padding-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p></p>
+    </div>
+
+    <script>
+        let para = document.querySelector('p');
+
+        document.addEventListener('keyup', function(event){
+            para.textContent = event.key;
+        });
+    </script>
+</body>
+</html>
