@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //localStorage
+
+        let user = {
+            name:'Shivam',
+            age:25,
+            isMarried:false
+        };
+
+        let user2 = {
+            name:'Swaleha',
+            age:25,
+            isMarried:false
+        }
+
+        localStorage.setItem("user", JSON.stringify(user));
+
+        localStorage.setItem("user2", JSON.stringify(user2));
+
+        let data = JSON.parse(localStorage.getItem("user"));
+
+        localStorage.removeItem("user");
+
+        localStorage.clear();
+
+
+
+        console.log(data);
+
+
+        //JSON - Javascript Object Notation  {"name":"Shivam Lowamshi", }
+
+        //{"name":"Shivam","age":25,"isMarried":false}
+    </script>
+</body>
+</html>
