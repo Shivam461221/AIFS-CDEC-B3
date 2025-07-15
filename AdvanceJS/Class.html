@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //ES6 
+        class Car{
+            constructor(brand, model, price, color){
+            this.brand = brand,
+            this.model = model,
+            this.price = price,
+            this.color = color
+            }
+
+            getInfo(){
+                return `${this.brand}`;
+            }
+
+        }
+
+        const car1 = new Car('Tata', 'Nexon', '13 Lakhs', 'white');
+
+        console.log(car1);
+
+        console.log(car1.getInfo());
+        
+    </script>
+</body>
+</html>

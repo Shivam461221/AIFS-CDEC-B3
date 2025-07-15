@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Asynchronous programming - non-blocking code
+
+        //Synchronous
+        // console.log('Task1');
+        // console.log('Task2');
+        // console.log('Task3');
+        // console.log('Task4');
+
+        //Asynchronous
+        console.log('Task1');
+        console.log('Task2');
+        
+        setTimeout(()=>{
+            console.log('Task3');
+        }, 4000)
+        
+        console.log('Task4');
+
+        //callback hell, promise, async/await 
+    </script>
+</body>
+</html>

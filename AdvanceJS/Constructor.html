@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructor</title>
+</head>
+<body>
+    <script>
+        // const person = {
+        //     name:'Shivam',
+        //     age:25,
+        //     getInfo: function(){
+        //         return this.name+" "+this.age;
+        //     }
+        // };
+
+        //console.log(person.getInfo());
+        
+
+        // const person2 = {
+        //     name:'Sagar',
+        //     age:22
+        // }
+
+        // const car = {
+        //     brand:'TATA',
+        //     model:'Nexon'
+        // }
+
+        //constructor , Prototype
+
+        //Constructor function
+        function Car(brand, model, price, color){
+            this.brand = brand,
+            this.model = model,
+            this.price = price,
+            this.color = color
+        }
+
+        const car1 = new Car('Tata', 'Nexon', '13 Lakhs', 'white');
+
+        const car2 = new Car('Nexa', "Fronx", '11 Lakhs', 'Blue');
+
+        console.log(car1);
+
+        //prototype
+
+        Car.prototype.fuel;
+
+        const car3 = new Car('Mahindra', 'XUV700', '25 lakhs', 'white');
+
+        car3.fuel = 'CNG';
+
+        //console.log(car3);
+
+        Car.prototype.getInfo = function(){
+            return `${this.brand} ${this.price} ${this.model}`;
+        }
+
+        console.log(car3.getInfo());
+
+
+    </script>
+</body>
+</html>

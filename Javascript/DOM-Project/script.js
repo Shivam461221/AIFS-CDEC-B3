@@ -37,21 +37,17 @@ function login(e) {
     }
     let users = JSON.parse(localStorage.getItem('users')) || [];
 
-    let foundUser = users.find(user => user.email === email && user.password === password);
+    // let foundUser = users.find(user => user.email === email && user.password === password);
+    let foundUser = users.find(user => user.email === email);
 
-    // if(foundUser.email === email){
-    //     if(foundUser.password===password){
-
-    //     }
-    //     else{
-    //         alert('Wrong Password');
-    //     }
-    // }
-
+    if(foundUser.password !== password){
+        alert('Wrong Password');
+        return
+    }
+    
     if (foundUser) {
         localStorage.setItem("loggedInUser", JSON.stringify(foundUser));
         window.location.href = 'index.html';
-
     }
     else {
         alert('Wrong credentials');
