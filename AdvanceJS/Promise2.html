@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function orderFood(foodItem) {
+            return new Promise((resolve, reject) => {
+                console.log('Order Placed, Please wait...');
+
+                setTimeout(() => {
+                    //console.log(Math.random());
+                    let isAvailable = Math.random() > 0.3;
+                    if (isAvailable) {
+                        resolve('Food is ready');
+                    }
+                    else {
+                        reject('Ingredients not available/sorry we are out');
+                    }
+                }, 2000);
+            })
+        }
+
+        orderFood('Pizza')
+            .then(result => console.log(result))
+            .catch(error => console.log(error));
+
+        fetch('https://dummyjson.com/products')
+            .then(res => res.json())
+            .then(console.log)
+            .catch(error => console.log(error));
+
+        let count = 0;
+        let interval = setInterval(() => {
+            console.log(count);
+            count++;
+            if (count === 5) {
+                clearInterval(interval);
+            }
+        }, 2000);
+        
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        //API calling, setTimeout, setIntervals, node/java file operations
+
+        //promises - promise is an object in JS which promise you completion/failure of 
+        //a future task
+
+        //Promise - pending, fulfill, reject
+        let input = 1*prompt('Enter a number');
+        let myPromise = new Promise((resolve, reject)=>{
+            if(input%2===0){
+                resolve('Promise resolved');
+            }
+            else{
+                reject('Promise rejected');
+            }
+        });
+
+        //.then() , .catch()
+        myPromise
+        .then(result=>console.log(result))
+        .catch(error=>console.log(error))
+        
+    </script>
+</body>
+</html>

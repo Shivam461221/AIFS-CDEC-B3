@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+<style>
+
+</style>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="column">
+                <div class="row-md-6">
+                    <label for="" class="form-label">username</label>
+                    <input type="text" onblur="validateUsername()" id="username" class="form-control">
+                    <small id="username-error"></small>
+                </div>
+                <div class="row-md-6">
+                    <label for="" class="form-label">password</label>
+                    <input type="email" onblur="validatepassword()" id="password" class="form-control">
+                    <small id="password-error"></small>
+                </div>
+
+            </div>
+            <div class="row-md-6">
+                <label for="" class="form-label">phone</label>
+                <input type="text" onblur="validatephone()" id="phone" class="form-control">
+                <small id="phone-error"></small>
+            </div>
+            <div class="row-md-6">
+                <label for="" class="form-label">email</label>
+                <input type="email" id="email" class="form-control">
+                <small id="email-error"></small>
+            </div>
+
+    </div>
+    <button class="btn btn-primary mt-5 ">submit</button>
+
+    </form>
+    </div>
+    <script>
+        function validateUsername() {
+            let value = true;
+            let username = document.getElementById('username').value;
+            let usernameError = document.getElementById('username-error');
+
+            if (username === '') {
+                usernameError.textContent = 'Please enter a username';
+                usernameError.style.color = 'red';
+                value = false;
+            }
+            else {
+                usernameError.textContent = '';
+                value = true;
+            }
+            return value;
+        }
+
+        function validatepassword() {
+            let value = true;
+            let password = document.getElementById('password').value;
+            let passerror = document.getElementById('password-error');
+
+            if (password.length < 8 || password.length > 12) {
+                passerror.textContent = 'Please enter password of 8 to 12 characters';
+                passerror.style.color = 'red';
+                value = false;
+            }
+            else {
+                passerror.textContent = '';
+                value = true;
+            }
+            return value;
+        }
+        
+        function validatephone() {
+            let value = true;
+            let phone = document.getElementById('phone').value;
+            let phoneerror = document.getElementById('phone-error');
+
+            if (phone.length != 10) {
+                phoneerror.textContent = 'Please enter a correct phonenumber';
+                phoneerror.style.color = 'red';
+                value = false;
+            }
+            else {
+                phoneerror.textContent = '';
+                value = true;
+            }
+            return value;
+        }
+        function validateemail() {
+            let value = true;
+            let email = document.getElementById('email').value;
+            let emailerror = document.getElementById('email-error');
+        }
+
+    </script>
