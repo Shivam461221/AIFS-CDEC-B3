@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        async function getProducts(){
+            try{
+                let response = await fetch('https://dummyjson.com/products');
+                let data = await response.json();     //it converts JSON into JS object
+                console.log(data);
+            }
+            catch(error){
+                console.log('Catch Block')
+                console.log(error.message);
+            }
+        }
+
+        getProducts();
+
+        //get- retrieve data / Read
+        //post- create data / Create
+        //put-  update
+        //delete- delete
+        //CRUD - Create, Read, Update, Delete
+
+    </script>
+</body>
+</html>
