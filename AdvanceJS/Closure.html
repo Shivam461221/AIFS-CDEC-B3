@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //ES6
+        // Closure in JS
+
+        function counter(){
+            let count = 0;
+
+            return function(){
+                count++;
+                console.log(count);
+            }
+        }
+
+        const increment = counter();
+
+        increment();
+        increment();
+
+        // console.log(increment);
+
+        function outerFunction(){
+            let outerVariable = 'I am Outer';
+
+            function innerFunction(){
+                console.log(outerVariable);
+            }
+
+            return innerFunction;
+        }
+
+       const myinnerFunction =  outerFunction();
+
+       myinnerFunction();
+
+    </script>
+</body>
+</html>

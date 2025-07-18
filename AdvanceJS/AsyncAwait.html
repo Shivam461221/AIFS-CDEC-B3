@@ -10,8 +10,10 @@
 
         async function getProducts(){
             try{
-                let response = await fetch('https://dummyjson.com/products');
-                let data = await response.json();     //it converts JSON into JS object
+               
+                let response = await fetch('https://jsonplaceholder.typicode.com/comments');
+                let data = await response.json();//it converts JSON into JS object
+                 console.log('Comments fetched');
                 console.log(data);
             }
             catch(error){
@@ -21,6 +23,22 @@
         }
 
         getProducts();
+
+        
+         async function getUsers(){
+            try{
+                let response = await fetch('https://dummyjson.com/users');
+                let data = await response.json();//it converts JSON into JS object
+                console.log('Users fetched');
+                console.log(data);
+            }
+            catch(error){
+                console.log('Catch Block')
+                console.log(error.message);
+            }
+        }
+
+        getUsers();
 
         //get- retrieve data / Read
         //post- create data / Create
