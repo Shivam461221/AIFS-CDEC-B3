@@ -1,0 +1,81 @@
+<script>
+    // CRUD - Create, Read, Update and Delete
+    //GET, POST, PUT and DELETE 
+
+    //Get method 
+    // function getUsers() {
+    //     fetch('https://dummyjson.com/users')
+    //         .then(res => res.json())
+    //         .then(console.log)
+    //         .catch(error=>console.log(error));
+    // }
+
+    async function getUsers() {
+        try {
+            let response = await fetch('https://dummyjson.com/users');
+            let data = await response.json();
+            console.log(data);
+        }
+        catch (error) {
+            console.log(error.message);
+        }
+    }
+
+    //getUsers();
+
+    async function addUser() {
+        try {
+            let response = await fetch('https://dummyjson.com/users/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    firstName: 'Muhammad',
+                    lastName: 'Ovi',
+                    age: 250,
+                })
+            });
+
+            console.log(response);
+
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    //addUser();
+
+    async function deleteUser(id) {
+        try {
+            let response = await fetch(`https://dummyjson.com/users/${id}`, { method: 'DELETE' });
+            console.log(response);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+   // deleteUser(1);
+
+    async function updateUser() {
+        try {
+            let response = await fetch('https://dummyjson.com/users/2', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    lastName: 'sharma',
+                    age:44
+                })
+            });
+
+            let data = await response.json();
+
+            console.log(data);
+        }
+        catch (error){
+            console.log(error);
+        }
+    }
+
+    updateUser();
+</script>
