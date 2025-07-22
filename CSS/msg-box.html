@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 200px;
+            border: 2px solid black;
+            font-size: 24px;
+        }
+
+        .msg {
+            border: 1px solid grey;
+            height: 100px;
+            width: 100px;
+            padding: 15px;
+            display: none;
+            background-color: red;
+        }
+
+        .msg ul {
+            display: inline-block;
+        }
+
+        .msg ul li {
+            display: block;
+        }
+
+        button {
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        button:hover+div {
+            display: block;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <button onclick="changeTheme()" id="btn">dark</button>
+    <div id="container" class="container">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis ea, enim quidem esse dolore aut amet
+            nesciunt non earum at possimus aliquid, reprehenderit nam nulla! Corrupti amet autem ratione laudantium
+            ullam, aspernatur temporibus debitis ipsam! Optio, eaque dolor voluptatum autem, doloribus provident rerum
+            officia ipsum reiciendis, error id totam assumenda?</p>
+        <button>Submit</button>
+        <div class="msg">
+            <ul>
+                <li>option1</li>
+                <li>option1</li>
+            </ul>
+        </div>
+    </div>
+
+    <select name="" id="">
+        <option value="">option</option>
+        <option value="">option</option>
+        <option value="">option</option>
+        <option value="">option</option>
+    </select>
+
+    <script>
+        function changeTheme() {
+            let btn = document.getElementById('btn');
+            let container = document.getElementById('container');
+            if (btn.innerText === 'dark') {
+                btn.innerText='light';
+                container.style.backgroundColor = 'black';
+                container.style.color = 'white';
+                container.setAttribute('class', 'dark');
+            }
+            else{
+                btn.innerText='dark';
+                container.style.backgroundColor = 'white';
+                container.style.color = 'black';
+            }
+        }
+    </script>
+</body>
+
+</html>

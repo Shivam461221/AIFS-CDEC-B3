@@ -1,0 +1,30 @@
+<script>
+    // spread - ...
+
+    const person = {
+        name:'shivam',
+        age:25
+    }
+
+    console.log(person);
+
+    const person2 = person;  //copy 
+
+    person2.age = 28;
+    console.log(person2);
+    console.log(person);
+
+    const person3 = { ...person };  //clone object
+    person3.name = 'aditi';
+    console.log(person);
+    
+    console.log(person2);
+    console.log(person3);
+
+    let arr = [1,2,3,5,4,6,4,9];
+    console.log(arr);
+
+    let arr2 = [11,12,13,...arr, 17,18];   //clone array
+
+    console.log(arr2);
+</script>
