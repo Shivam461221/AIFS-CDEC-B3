@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="getLocation()">Location</button>
+    <br><br>
+    <button onclick="getNotification()">Notification</button>
+
+    <br><br>
+    <input type="text" id="text"> 
+    <button onclick="copyText()">Copy</button>
+
+    <script>
+        function getLocation() {
+            navigator.geolocation.getCurrentPosition(current => {
+                let latitude = current.coords.latitude;
+                let longitude = current.coords.longitude;
+                console.log(latitude, longitude);
+            })
+        }
+
+        function getNotification(){
+            Notification.requestPermission().then((permission)=>{
+                if(permission==='granted'){
+                    new Notification('Hello from browser');
+                }
+            });
+        }
+
+        function copyText(){
+            let text = document.getElementById('text').value;
+
+            navigator.clipboard.writeText(text).then(()=>{
+                alert('Text copied');
+            })
+        }
+    </script>
+</body>
+
+</html>
