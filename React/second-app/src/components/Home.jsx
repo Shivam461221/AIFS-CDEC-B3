@@ -27,7 +27,7 @@ function Home() {
 
     useEffect(()=>{
         //runs when component about to remove
-        return ()=>{
+        return()=>{
             console.log('Destroying');
         }
     })
