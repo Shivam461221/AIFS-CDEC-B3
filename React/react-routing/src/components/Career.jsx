@@ -1,6 +1,8 @@
+import { useState } from "react"
 
-export default function Career(){
+export default function Career({data}){
+   
     return <div>
-        <h1>Career</h1>
+        <h1>Career {data}</h1>
     </div>
 }

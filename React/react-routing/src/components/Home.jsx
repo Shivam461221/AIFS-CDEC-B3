@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import Career from "./Career";
-import About from "./About";
-import { useState } from "react";
+import ComOne from "./ComOne";
 
-function Home(){
+
+
+function Home(props){
     const navigate = useNavigate();
-    const [data, setData] = useState([]);
+    
 
     const navigateTo=()=>{
         navigate('/about');
@@ -13,11 +13,12 @@ function Home(){
 
     return (
         <>
-            <h1>Home</h1>
+            <h1>Home {props.data} </h1>
+
             <button onClick={()=>navigateTo()} className="btn btn-primary">About</button>
             <button onClick={()=>navigate('/career')} className="btn btn-success">Career</button>
-            <Career data={data} />
-            <About/>
+            
+            <ComOne data={props.data} />
         </>
     )
 }
