@@ -1,8 +1,26 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function About(props){
     //<></> -  React framement
+    const [data, setData] = useState();
+
+    // useEffect(()=>{
+    //     //once when component renders
+    // }, [])
+
+    // useEffect(()=>{
+    //     //runs when there is a change in dependency
+    // }, [data])
+
+    // useEffect(()=>{
+    //     //runs everytime
+    // })
     
+    // useEffect(()=>{
+    //     return()=>{
+    //         console.log()
+    //     }
+    // })
     return(
         <>
             <h1>About {props.data}</h1>
