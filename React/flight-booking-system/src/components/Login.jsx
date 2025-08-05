@@ -1,10 +1,12 @@
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../Context/UserContext';
 
 const Login = () => {
     const [formData, setFormData] = useState({ username: '', password: '' });
+    const { login, logout } = useUser(); 
     //   const [username, setUsername] = useState('');
     //   const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -20,17 +22,20 @@ const Login = () => {
         e.preventDefault();
 
         let response = await axios.post('http://localhost:8080/api/users/login', { username: formData.username, password: formData.password })
-        console.log(response);
+        // console.log(response);
         let data = response.data;
         if (data.token) {
+            login({
+                userId:data.userId,
+                token:data.token,
+                roles:data.roles
+            })
             navigate('/user-dashboard');
         }
         else{
             alert('Wrong credentials');
         }
 
-
-        console.log('Login Data:', formData);
     };
 
     return (

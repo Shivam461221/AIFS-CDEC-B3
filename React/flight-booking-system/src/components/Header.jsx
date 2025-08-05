@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
+import { useUser } from "../Context/UserContext";
 
-export default function Header(){
-    return (
+export default function Header() {
+
+  const { user, logout } = useUser();
+  return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">✈️ Flight Booker</Link>
@@ -12,20 +15,41 @@ export default function Header(){
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/signup">Signup</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/contact">Contact</Link>
-            </li>
-            
-            
+
+            {user.token ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/">Home</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">Search Flight</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/signup">Booking</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/'} onClick={() => logout()}>Logout</Link>
+                </li>
+              </>
+            ) :
+              (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/">Home</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">Login</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/signup">Signup</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/contact">Contact</Link>
+                  </li>
+                </>
+              )
+            }
+
           </ul>
         </div>
       </div>

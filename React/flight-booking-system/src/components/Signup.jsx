@@ -1,4 +1,7 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +13,8 @@ const Signup = () => {
     contactNumber: '',
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -17,14 +22,28 @@ const Signup = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    // 📝 Call signup API here
-    console.log('Signup Data:', formData);
+    try{
+    let response = await axios.post('http://localhost:8080/api/users/register?', formData, {
+      params:{
+        isAdmin:false
+      },
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    toast.success('Login successful');
+    navigate('/login');
+    }
+    catch(error){
+      toast.error('Sign Up Failed');
+    }
   };
 
   return (
     <div className="container mt-5">
+      <ToastContainer/>
       <h2 className="mb-4 text-center">Sign Up</h2>
       <form onSubmit={handleSubmit} className="mx-auto" style={{ maxWidth: '500px' }}>
         <div className="mb-3">
