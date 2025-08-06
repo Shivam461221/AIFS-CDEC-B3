@@ -1,0 +1,91 @@
+Flight Reservation Application 
+
+1. Login Request- 
+
+Post - http://localhost:8080/api/users/login
+
+Body{
+    "username":"ShivamLowanshi",
+    "password":"Shivam@123"
+}
+
+Response - {
+    "userId": 9,
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTaGl2YW1Mb3dhbnNoaSIsInJvbGVzIjpbXSwiaWF0IjoxNzQ1NTY5MjA2LCJleHAiOjE3NDU2MDUyMDZ9.X6R204szu5lkwwQk9RpR2Hi9GSB7uNGxD3JMKRCDlDE",
+    "roles": []
+}
+
+2. Register Request - 
+
+Post - http://localhost:8080/api/users/register?isAdmin=false
+
+Params - isAdmin = false
+
+Body {
+    "username":"Atul",
+    "password":"12345",
+    "email":"atul@123",
+    "gender":"M",
+    "contactNumber":"9754123123",
+    "age":"22"
+}
+
+3. Get User By Id - 
+
+GET - http://localhost:8080/api/users/5
+
+Authentication - bearer token 
+
+response - {
+    "id": 5,
+    "username": "shivam1234",
+    "email": "shivam@123",
+    "gender": "M",
+    "contactNumber": "122222",
+    "age": 21,
+    "resetToken": null,
+    "roles": []
+}
+
+4. Get User List - 
+
+GET - http://localhost:8080/api/users/userList
+
+Authentication - Bearer Token
+
+response - user list Array
+
+5. Update user - 
+
+PUT - http://localhost:8080/api/users/update/5
+
+Authentication - Bearer token
+
+Body {
+        "username": "shivam",
+        "email": "shivm@123",
+        "gender": "Male",
+        "contactNumber": "1212123",
+        "age": 24
+        
+    }
+
+Response - User updated Successfully 
+
+5. Search Flight - 
+
+GET - http://localhost:8080/api/flights/search
+
+Authentication - Bearer token
+
+Params {
+origin
+destination
+departuredate
+}
+
+6. 
+
+
+
+ 

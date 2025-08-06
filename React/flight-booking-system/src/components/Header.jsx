@@ -22,10 +22,10 @@ export default function Header() {
                   <Link className="nav-link" to="/">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/login">Search Flight</Link>
+                  <Link className="nav-link" to={"/search-flight"}>Search Flight</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/signup">Booking</Link>
+                  <Link className="nav-link" to="/booking">Booking</Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to={'/'} onClick={() => logout()}>Logout</Link>

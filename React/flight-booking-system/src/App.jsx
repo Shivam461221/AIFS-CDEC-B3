@@ -11,6 +11,8 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Contact from './components/Contact';
 import UserDashboard from './components/UserDashboard';
+import ProtectedRoute from './components/ProtectedRoute';
+import SearchFlight from './components/SearchFlight';
 
 function App() {
 
@@ -25,7 +27,8 @@ function App() {
           <Route path='/login' element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
           <Route path="/contact" element={<Contact />} />
-          <Route path='/user-dashboard'  element={<UserDashboard/>} />
+          <Route path='/user-dashboard'  element={<ProtectedRoute><UserDashboard/></ProtectedRoute>} />
+          <Route path='/search-flight' element={<ProtectedRoute><SearchFlight/></ProtectedRoute>} />
         </Routes>
       </main>
       <Footer />
