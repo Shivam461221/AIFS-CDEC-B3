@@ -1,0 +1,370 @@
+create database database_name;
+
+show databases;
+
+use database_name;
+
+DDL (Data Definition Language) - 
+1. Create - create database / table
+2. Alter - modify table structure 
+3. Drop - delete table/database
+4. Truncate - remove all data from a table 
+
+--create a table 
+ show databases;
++------------------------------+
+| Database                     |
++------------------------------+
+| attendance_management_system |
+| checkin_db                   |
+| clinic_management_system     |
+| clothingmanagementsystem     |
+| cloud                        |
+| employeelog                  |
+| event_management             |
+| flight_reservation_app       |
+| flightdb                     |
+| hrms                         |
+| human_resource_management    |
+| information_schema           |
+| library_management_system    |
+| mydb                         |
+| myhiber                      |
+| mysql                        |
+| online_shopping_system       |
+| performance_schema           |
+| push_notification            |
+| reservation                  |
+| sakila                       |
+| school_transportation        |
+| student_db                   |
+| studentform                  |
+| sys                          |
+| tem                          |
+| tinkus_cafe_system           |
+| todo_db                      |
+| visitor_information          |
+| world                        |
++------------------------------+
+30 rows in set (0.00 sec)
+
+mysql> use flight_reservation_app;
+Database changed
+mysql> show tables;
++----------------------------------+
+| Tables_in_flight_reservation_app |
++----------------------------------+
+| users                            |
++----------------------------------+
+1 row in set (0.03 sec)
+
+mysql> create table flights (id serial primary key auto_increment, flight_number varchar(100), origin varchar(100), destination varchar(100), price double  );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> show tables;
++----------------------------------+
+| Tables_in_flight_reservation_app |
++----------------------------------+
+| flights                          |
+| users                            |
++----------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> desc flights;
++---------------+-----------------+------+-----+---------+----------------+
+| Field         | Type            | Null | Key | Default | Extra          |
++---------------+-----------------+------+-----+---------+----------------+
+| id            | bigint unsigned | NO   | PRI | NULL    | auto_increment |
+| flight_number | varchar(100)    | YES  |     | NULL    |                |
+| origin        | varchar(100)    | YES  |     | NULL    |                |
+| destination   | varchar(100)    | YES  |     | NULL    |                |
+| price         | double          | YES  |     | NULL    |                |
++---------------+-----------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+--Alter table
+
+ alter table flights add departure_date date;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc flights;
++----------------+-----------------+------+-----+---------+----------------+
+| Field          | Type            | Null | Key | Default | Extra          |
++----------------+-----------------+------+-----+---------+----------------+
+| id             | bigint unsigned | NO   | PRI | NULL    | auto_increment |
+| flight_number  | varchar(100)    | YES  |     | NULL    |                |
+| origin         | varchar(100)    | YES  |     | NULL    |                |
+| destination    | varchar(100)    | YES  |     | NULL    |                |
+| price          | double          | YES  |     | NULL    |                |
+| departure_date | date            | YES  |     | NULL    |                |
++----------------+-----------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec) 
+
+mysql> drop table flights;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++----------------------------------+
+| Tables_in_flight_reservation_app |
++----------------------------------+
+| users                            |
++----------------------------------+
+1 row in set (0.00 sec)
+
+2. DML (Data Manupulation Language) commands - 
+1. Insert - add new rows
+2. Update - modify existing rows
+3. Delete - remove row
+
+mysql> select * from users;
++----+-------+------+
+| id | name  | age  |
++----+-------+------+
+|  1 | Aditi |   22 |
++----+-------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into users (id, name, age) values (2, 'Swaleha', 23);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from users;
++----+---------+------+
+| id | name    | age  |
++----+---------+------+
+|  1 | Aditi   |   22 |
+|  2 | Swaleha |   23 |
++----+---------+------+
+2 rows in set (0.00 sec)
+
+mysql> update users set age=23 where name='Aditi';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from users;
++----+---------+------+
+| id | name    | age  |
++----+---------+------+
+|  1 | Aditi   |   23 |
+|  2 | Swaleha |   23 |
++----+---------+------+
+2 rows in set (0.00 sec)
+
+mysql> delete from users where id=1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from users;
++----+---------+------+
+| id | name    | age  |
++----+---------+------+
+|  2 | Swaleha |   23 |
++----+---------+------+
+1 row in set (0.00 sec)
+
+3. DQL (Data Query Language) command - 
+Select 
+
+mysql> select * from users;
++----+---------+------+
+| id | name    | age  |
++----+---------+------+
+|  2 | Swaleha |   23 |
+|  3 | sagar   |   24 |
+|  4 | aditi   |   22 |
++----+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> select name from usres;
+ERROR 1146 (42S02): Table 'flight_reservation_app.usres' doesn't exist
+mysql> select name from users;
++---------+
+| name    |
++---------+
+| Swaleha |
+| sagar   |
+| aditi   |
++---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from users where age=22;
++----+-------+------+
+| id | name  | age  |
++----+-------+------+
+|  4 | aditi |   22 |
++----+-------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from users where age>=23;
++----+---------+------+
+| id | name    | age  |
++----+---------+------+
+|  2 | Swaleha |   23 |
+|  3 | sagar   |   24 |
++----+---------+------+
+2 rows in set (0.00 sec)
+
+
+Sorting data with order by
+
+(order by)
+
+mysql> select * from users;
++----+---------+------+
+| id | name    | age  |
++----+---------+------+
+|  2 | Swaleha |   23 |
+|  3 | sagar   |   24 |
+|  4 | aditi   |   22 |
++----+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from users order by age;
++----+---------+------+
+| id | name    | age  |
++----+---------+------+
+|  4 | aditi   |   22 |
+|  2 | Swaleha |   23 |
+|  3 | sagar   |   24 |
++----+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from users order by age desc;
++----+---------+------+
+| id | name    | age  |
++----+---------+------+
+|  3 | sagar   |   24 |
+|  2 | Swaleha |   23 |
+|  4 | aditi   |   22 |
++----+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from users order by age asc;
++----+---------+------+
+| id | name    | age  |
++----+---------+------+
+|  4 | aditi   |   22 |
+|  2 | Swaleha |   23 |
+|  3 | sagar   |   24 |
++----+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from users order by name;
++----+---------+------+
+| id | name    | age  |
++----+---------+------+
+|  4 | aditi   |   22 |
+|  3 | sagar   |   24 |
+|  2 | Swaleha |   23 |
++----+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from users order by name desc;
++----+---------+------+
+| id | name    | age  |
++----+---------+------+
+|  2 | Swaleha |   23 |
+|  3 | sagar   |   24 |
+|  4 | aditi   |   22 |
++----+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO users (id, name, age)
+    -> VALUES
+    -> (5, 'rahul', 25),
+    -> (6, 'shivam', 23),
+    -> (7, 'neha', 21),
+    -> (8, 'arjun', 27),
+    -> (9, 'priya', 24),
+    -> (10, 'amit', 26),
+    -> (11, 'sneha', 22),
+    -> (12, 'rohan', 28),
+    -> (13, 'meera', 20),
+    -> (14, 'karan', 29);
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from users;
++----+---------+------+
+| id | name    | age  |
++----+---------+------+
+|  2 | Swaleha |   23 |
+|  3 | sagar   |   24 |
+|  4 | aditi   |   22 |
+|  5 | rahul   |   25 |
+|  6 | shivam  |   23 |
+|  7 | neha    |   21 |
+|  8 | arjun   |   27 |
+|  9 | priya   |   24 |
+| 10 | amit    |   26 |
+| 11 | sneha   |   22 |
+| 12 | rohan   |   28 |
+| 13 | meera   |   20 |
+| 14 | karan   |   29 |
++----+---------+------+
+13 rows in set (0.00 sec)
+
+mysql> select * from users order by name;
++----+---------+------+
+| id | name    | age  |
++----+---------+------+
+|  4 | aditi   |   22 |
+| 10 | amit    |   26 |
+|  8 | arjun   |   27 |
+| 14 | karan   |   29 |
+| 13 | meera   |   20 |
+|  7 | neha    |   21 |
+|  9 | priya   |   24 |
+|  5 | rahul   |   25 |
+| 12 | rohan   |   28 |
+|  3 | sagar   |   24 |
+|  6 | shivam  |   23 |
+| 11 | sneha   |   22 |
+|  2 | Swaleha |   23 |
++----+---------+------+
+13 rows in set (0.00 sec)
+
+Distinc keyword returns only unique values (non-duplicate)
+
+----select distinct column_name from table_name;
+
+Logical Operators
+
+mysql> select * from users where age>=25 AND name = 'arjun';
++----+-------+------+
+| id | name  | age  |
++----+-------+------+
+|  8 | arjun |   27 |
++----+-------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from users where age>=25 OR name = 'arjun';
++----+-------+------+
+| id | name  | age  |
++----+-------+------+
+|  5 | rahul |   25 |
+|  8 | arjun |   27 |
+| 10 | amit  |   26 |
+| 12 | rohan |   28 |
+| 14 | karan |   29 |
++----+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from users where NOT age=25;
++----+---------+------+
+| id | name    | age  |
++----+---------+------+
+|  2 | Swaleha |   23 |
+|  3 | sagar   |   24 |
+|  4 | aditi   |   22 |
+|  6 | shivam  |   23 |
+|  7 | neha    |   21 |
+|  8 | arjun   |   27 |
+|  9 | priya   |   24 |
+| 10 | amit    |   26 |
+| 11 | sneha   |   22 |
+| 12 | rohan   |   28 |
+| 13 | meera   |   20 |
+| 14 | karan   |   29 |
++----+---------+------+
+12 rows in set (0.00 sec)
+

@@ -39,7 +39,7 @@ const Login = () => {
     };
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-5" style={{minHeight:'550px'}}>
             <h2 className="mb-4 text-center">Login</h2>
             <form onSubmit={handleSubmit} className="mx-auto" style={{ maxWidth: '400px' }}>
                 <div className="mb-3">

@@ -36,7 +36,7 @@ const SearchFlight = () => {
     return (
         <>
 
-            <div className="container mt-5">
+            <div className="container mt-5" style={{minHeight:'550px'}}>
                 <h2 className="mb-4 text-center">Search Flights</h2>
 
                 {/* Search Form */}
@@ -100,6 +100,8 @@ const SearchFlight = () => {
                                     <th>Destination</th>
                                     <th>Departure Date</th>
                                     <th>Arrival</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
 
                                 </tr>
                             </thead>
@@ -111,6 +113,8 @@ const SearchFlight = () => {
                                         <td>{flight.destination}</td>
                                         <td>{flight.departureDate}</td>
                                         <td>{flight.departureTime}</td>
+                                        <td>RS.12000</td>
+                                        <td><button className="btn btn-primary">Book</button></td>
 
                                     </tr>
                                 ))}

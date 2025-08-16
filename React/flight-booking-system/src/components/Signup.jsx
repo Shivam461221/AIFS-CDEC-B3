@@ -42,7 +42,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 mb-2">
       <ToastContainer/>
       <h2 className="mb-4 text-center">Sign Up</h2>
       <form onSubmit={handleSubmit} className="mx-auto" style={{ maxWidth: '500px' }}>

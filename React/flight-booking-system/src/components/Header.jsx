@@ -18,9 +18,9 @@ export default function Header() {
 
             {user.token ? (
               <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/">Home</Link>
-                </li>
+                 <li className="nav-item">
+                    <Link className="nav-link" to="/user-dashboard">Dashboard</Link>
+                  </li>
                 <li className="nav-item">
                   <Link className="nav-link" to={"/search-flight"}>Search Flight</Link>
                 </li>
@@ -37,6 +37,7 @@ export default function Header() {
                   <li className="nav-item">
                     <Link className="nav-link" to="/">Home</Link>
                   </li>
+                 
                   <li className="nav-item">
                     <Link className="nav-link" to="/login">Login</Link>
                   </li>
