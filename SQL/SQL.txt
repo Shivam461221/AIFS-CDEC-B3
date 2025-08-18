@@ -368,3 +368,146 @@ mysql> select * from users where NOT age=25;
 +----+---------+------+
 12 rows in set (0.00 sec)
 
+
+-------------------------------------------------------------------
+
+mysql> create table flights (id int primary key auto_increment, flight_number varchar(100), origin varchar(100),, destination varchar (100));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', destination varchar (100))' at line 1
+mysql> create table flights (id int primary key auto_increment, flight_number varchar(100), origin varchar(100), destination varchar (100));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++----------------------------------+
+| Tables_in_flight_reservation_app |
++----------------------------------+
+| flights                          |
+| users                            |
++----------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> desc flights;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id            | int          | NO   | PRI | NULL    | auto_increment |
+| flight_number | varchar(100) | YES  |     | NULL    |                |
+| origin        | varchar(100) | YES  |     | NULL    |                |
+| destination   | varchar(100) | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into flights (flight_number, origin, destination) values (A123, 'Indore', 'Nagpur');
+ERROR 1054 (42S22): Unknown column 'A123' in 'field list'
+mysql> insert into flights (flight_number, origin, destination) values ('A123', 'Indore', 'Nagpur');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from flights;
++----+---------------+--------+-------------+
+| id | flight_number | origin | destination |
++----+---------------+--------+-------------+
+|  1 | A123          | Indore | Nagpur      |
++----+---------------+--------+-------------+
+1 row in set (0.00 sec)
+
+mysql> insert into flights (flight_number, origin, destination) values ('A121', 'Nagpur', 'pune');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from flights;
++----+---------------+--------+-------------+
+| id | flight_number | origin | destination |
++----+---------------+--------+-------------+
+|  1 | A123          | Indore | Nagpur      |
+|  2 | A121          | Nagpur | pune        |
++----+---------------+--------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> desc users;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| id    | bigint       | NO   | PRI | NULL    |       |
+| name  | varchar(100) | YES  |     | NULL    |       |
+| age   | int          | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> drop table users;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++----------------------------------+
+| Tables_in_flight_reservation_app |
++----------------------------------+
+| flights                          |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> create table users(id int primary key auto_increment, name varchar(100), age int, email varchar(100) unique, mobile varchar(100) unique, gender varchar(100));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc users;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int          | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(100) | YES  |     | NULL    |                |
+| age    | int          | YES  |     | NULL    |                |
+| email  | varchar(100) | YES  | UNI | NULL    |                |
+| mobile | varchar(100) | YES  | UNI | NULL    |                |
+| gender | varchar(100) | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into users (name, age, email, mobile, gender) values ('Sagar', 23, 'sagar@gmail.com', '9977212311', 'Male');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select * from users;
++----+-------+------+-----------------+------------+--------+
+| id | name  | age  | email           | mobile     | gender |
++----+-------+------+-----------------+------------+--------+
+|  1 | Sagar |   23 | sagar@gmail.com | 9977212311 | Male   |
++----+-------+------+-----------------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into users (name, age, email, mobile, gender) values ('Yash', 23, 'sagar@gmail.com', '9977212312', 'Male');
+ERROR 1062 (23000): Duplicate entry 'sagar@gmail.com' for key 'users.email'
+mysql> insert into users (name, age, email, mobile, gender) values ('Yash', 23, 'yash@gmail.com', '9977212312', 'Male');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from users;
++----+-------+------+-----------------+------------+--------+
+| id | name  | age  | email           | mobile     | gender |
++----+-------+------+-----------------+------------+--------+
+|  1 | Sagar |   23 | sagar@gmail.com | 9977212311 | Male   |
+|  3 | Yash  |   23 | yash@gmail.com  | 9977212312 | Male   |
++----+-------+------+-----------------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> create table bookings (id int primary key auto_increment, flight_id int, user_id int, foreign key(flight_id) references flights (id), foreign key(user_id) references users(id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc bookings;
++-----------+------+------+-----+---------+----------------+
+| Field     | Type | Null | Key | Default | Extra          |
++-----------+------+------+-----+---------+----------------+
+| id        | int  | NO   | PRI | NULL    | auto_increment |
+| flight_id | int  | YES  | MUL | NULL    |                |
+| user_id   | int  | YES  | MUL | NULL    |                |
++-----------+------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into bookings values (1, 1);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into bookings (flight_id, user_id) values (1, 1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from bookings;
++----+-----------+---------+
+| id | flight_id | user_id |
++----+-----------+---------+
+|  1 |         1 |       1 |
++----+-----------+---------+
+1 row in set (0.00 sec)
+
+not null, default 
+
