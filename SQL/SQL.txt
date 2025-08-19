@@ -511,3 +511,185 @@ mysql> select * from bookings;
 
 not null, default 
 
+mysql> create table students (id int primary key auto_increment, name varchar(100), course_id int, foreign key (course_id) references courses(id));
+Query OK, 0 rows affected (0.24 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_student_db |
++----------------------+
+| courses              |
+| students             |
++----------------------+
+2 rows in set (0.00 sec)
+
+mysql> desc students;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| id        | int          | NO   | PRI | NULL    | auto_increment |
+| name      | varchar(100) | YES  |     | NULL    |                |
+| course_id | int          | YES  | MUL | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into students (name, course_id) values('sagar', 1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students (name, course_id) values('Swaleha', 2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students (name, course_id) values('SHivam', 4);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students (name, course_id) values('Aditi', 3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students (name, course_id) values('Yash', null);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from students;
++----+---------+-----------+
+| id | name    | course_id |
++----+---------+-----------+
+|  1 | sagar   |         1 |
+|  2 | Swaleha |         2 |
+|  3 | SHivam  |         4 |
+|  4 | Aditi   |         3 |
+|  5 | Yash    |      NULL |
++----+---------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from courses;
++----+-------+----------+----------+
+| id | name  | duration | semester |
++----+-------+----------+----------+
+|  1 | Btech | 4 Year   | 8        |
+|  2 | BE    | 4 Year   | 8        |
+|  3 | B.sc  | 3 Year   | 6        |
+|  4 | B.sc  | 3 Year   | 6        |
+|  5 | BCA   | 3 year   | 6        |
++----+-------+----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select students.name, courses.name from students inner join courses on students.course_id = courses.id;
++---------+-------+
+| name    | name  |
++---------+-------+
+| sagar   | Btech |
+| Swaleha | BE    |
+| SHivam  | B.sc  |
+| Aditi   | B.sc  |
++---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select students.name, courses.name, courses.duration from students inner join courses on students.course_id = courses.id;
++---------+-------+----------+
+| name    | name  | duration |
++---------+-------+----------+
+| sagar   | Btech | 4 Year   |
+| Swaleha | BE    | 4 Year   |
+| SHivam  | B.sc  | 3 Year   |
+| Aditi   | B.sc  | 3 Year   |
++---------+-------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select students.name, courses.id from students left join courses on students.course_id = courses.id;
++---------+------+
+| name    | id   |
++---------+------+
+| sagar   |    1 |
+| Swaleha |    2 |
+| SHivam  |    4 |
+| Aditi   |    3 |
+| Yash    | NULL |
++---------+------+
+5 rows in set (0.00 sec)
+
+mysql> select students.name, courses.name from students left join courses on students.course_id = courses.id;
++---------+-------+
+| name    | name  |
++---------+-------+
+| sagar   | Btech |
+| Swaleha | BE    |
+| SHivam  | B.sc  |
+| Aditi   | B.sc  |
+| Yash    | NULL  |
++---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select students.name, courses.name from students right join courses on students.course_id = courses.id;
++---------+-------+
+| name    | name  |
++---------+-------+
+| sagar   | Btech |
+| Swaleha | BE    |
+| Aditi   | B.sc  |
+| SHivam  | B.sc  |
+| NULL    | BCA   |
++---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select 8 from students;
++---+
+| 8 |
++---+
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
++---+
+5 rows in set (0.00 sec)
+
+mysql> select * from students;
++----+---------+-----------+
+| id | name    | course_id |
++----+---------+-----------+
+|  1 | sagar   |         1 |
+|  2 | Swaleha |         2 |
+|  3 | SHivam  |         4 |
+|  4 | Aditi   |         3 |
+|  5 | Yash    |      NULL |
++----+---------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from courses;
++----+-------+----------+----------+
+| id | name  | duration | semester |
++----+-------+----------+----------+
+|  1 | Btech | 4 Year   | 8        |
+|  2 | BE    | 4 Year   | 8        |
+|  3 | B.sc  | 3 Year   | 6        |
+|  4 | B.sc  | 3 Year   | 6        |
+|  5 | BCA   | 3 year   | 6        |
++----+-------+----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT s1.name AS student1, s2.name AS student2, s1.course_id
+    -> FROM students s1
+    -> JOIN students s2
+    ->   ON s1.course_id = s2.course_id
+    ->   AND s1.id < s2.id;
+Empty set (0.00 sec)
+
+mysql> select s1.name as student1, s2.name student2, s1.course_id from students s1 join students s2 on s1.course_id = s2. course_id and s1.id<s2.id;
+Empty set (0.00 sec)
+
+mysql> inserty into students (name, course_id) values ('Kuldeep', 1);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inserty into students (name, course_id) values ('Kuldeep', 1)' at line 1
+mysql> insert into students (name, course_id) values ('Kuldeep', 1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students (name, course_id) values ('Madhu', 2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select s1.name as student1, s2.name student2, s1.course_id from students s1 join students s2 on s1.course_id = s2. course_id and s1.id<s2.id;
++----------+----------+-----------+
+| student1 | student2 | course_id |
++----------+----------+-----------+
+| sagar    | Kuldeep  |         1 |
+| Swaleha  | Madhu    |         2 |
++----------+----------+-----------+
+2 rows in set (0.00 sec)
+
