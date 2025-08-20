@@ -1,0 +1,74 @@
+mysql> select * from students;
++----+---------+-----------+------------+
+| id | name    | course_id | percentage |
++----+---------+-----------+------------+
+|  1 | sagar   |         1 |         86 |
+|  2 | Swaleha |         2 |         82 |
+|  3 | SHivam  |         4 |         80 |
+|  4 | Aditi   |         3 |         88 |
+|  5 | Yash    |      NULL |         90 |
+|  6 | Kuldeep |         1 |         85 |
+|  7 | Madhu   |         2 |         95 |
+|  8 | Alkesh  |         3 |       87.5 |
+|  9 | Rajat   |         1 |       84.2 |
+| 10 | Ananya  |         2 |       90.5 |
+| 11 | Suresh  |         3 |       73.8 |
+| 12 | Divya   |         4 |       88.1 |
+| 13 | Manoj   |         2 |       95.4 |
+| 14 | Kavya   |         1 |       79.6 |
+| 15 | Arjun   |         3 |       92.7 |
+| 16 | Neha    |         4 |       81.5 |
+| 17 | Prakash |         2 |       87.3 |
+| 18 | Ritika  |         1 |       89.9 |
+| 19 | Harsh   |         3 |       77.4 |
+| 20 | Ishita  |         4 |       93.6 |
+| 21 | Deepak  |         2 |       85.8 |
+| 22 | Mehul   |         1 |       90.1 |
+| 23 | Tanvi   |         3 |         88 |
+| 24 | Ramesh  |         4 |       74.9 |
+| 25 | Jyoti   |         2 |       91.7 |
+| 26 | Nikhil  |         1 |       86.2 |
+| 27 | Preeti  |         3 |       80.4 |
+| 28 | Sameer  |         4 |       82.9 |
++----+---------+-----------+------------+
+28 rows in set (0.00 sec)
+
+mysql> select COUNT(*) as total_students from students;
++----------------+
+| total_students |
++----------------+
+|             28 |
++----------------+
+1 row in set (0.01 sec)
+
+mysql> select sum(percentage) as total_percentage from students;
++--------------------+
+| total_percentage   |
++--------------------+
+| 2407.4999999999995 |
++--------------------+
+1 row in set (0.01 sec)
+
+mysql> select avg(percentage) as average_percentage from students;
++--------------------+
+| average_percentage |
++--------------------+
+|  85.98214285714285 |
++--------------------+
+1 row in set (0.01 sec)
+
+mysql> select min(percentage) as lowest from students;
++--------+
+| lowest |
++--------+
+|   73.8 |
++--------+
+1 row in set (0.01 sec)
+
+mysql> select max(percentage) as highest from students;
++---------+
+| highest |
++---------+
+|    95.4 |
++---------+
+1 row in set (0.00 sec)
