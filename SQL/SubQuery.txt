@@ -1,0 +1,336 @@
+select name, percentage from students where percentage >(select avg(percentage) from students);
++---------+------------+
+| name    | percentage |
++---------+------------+
+| Aditi   |         88 |
+| Yash    |         90 |
+| Madhu   |         95 |
+| Alkesh  |       87.5 |
+| Ananya  |       90.5 |
+| Divya   |       88.1 |
+| Manoj   |       95.4 |
+| Arjun   |       92.7 |
+| Prakash |       87.3 |
+| Ritika  |       89.9 |
+| Ishita  |       93.6 |
+| Mehul   |       90.1 |
+| Tanvi   |         88 |
+| Jyoti   |       91.7 |
+| Nikhil  |       86.2 |
+| SANJAY  |         92 |
++---------+------------+
+16 rows in set (0.00 sec)
+
+mysql> select name, percentage from students where percentage < (select avg(percentage) from students);
++---------+------------+
+| name    | percentage |
++---------+------------+
+| sagar   |         86 |
+| Swaleha |         82 |
+| Shivam  |         80 |
+| Kuldeep |         85 |
+| Rajat   |       84.2 |
+| Suresh  |       73.8 |
+| Kavya   |       79.6 |
+| Neha    |       81.5 |
+| Harsh   |       77.4 |
+| Deepak  |       85.8 |
+| Ramesh  |       74.9 |
+| Preeti  |       80.4 |
+| Sameer  |       82.9 |
++---------+------------+
+13 rows in set (0.00 sec)
+
+mysql> select max(percentage) from students;
++-----------------+
+| max(percentage) |
++-----------------+
+|            95.4 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select name, percentage from students where max(percentage);
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select name, percentage from students where percentage = max(percentage);
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select name, percentage from students where percentage =(select max(percentage) from students);
++-------+------------+
+| name  | percentage |
++-------+------------+
+| Manoj |       95.4 |
++-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select name, percentage from students where percentage < (select max(percentage) from students);
++---------+------------+
+| name    | percentage |
++---------+------------+
+| sagar   |         86 |
+| Swaleha |         82 |
+| Shivam  |         80 |
+| Aditi   |         88 |
+| Yash    |         90 |
+| Kuldeep |         85 |
+| Madhu   |         95 |
+| Alkesh  |       87.5 |
+| Rajat   |       84.2 |
+| Ananya  |       90.5 |
+| Suresh  |       73.8 |
+| Divya   |       88.1 |
+| Kavya   |       79.6 |
+| Arjun   |       92.7 |
+| Neha    |       81.5 |
+| Prakash |       87.3 |
+| Ritika  |       89.9 |
+| Harsh   |       77.4 |
+| Ishita  |       93.6 |
+| Deepak  |       85.8 |
+| Mehul   |       90.1 |
+| Tanvi   |         88 |
+| Ramesh  |       74.9 |
+| Jyoti   |       91.7 |
+| Nikhil  |       86.2 |
+| Preeti  |       80.4 |
+| Sameer  |       82.9 |
+| SANJAY  |         92 |
++---------+------------+
+28 rows in set (0.00 sec)
+
+mysql> select name, percentage from students where percentage order by 1 < (select max(percentage) from students);
++---------+------------+
+| name    | percentage |
++---------+------------+
+| sagar   |         86 |
+| Swaleha |         82 |
+| Shivam  |         80 |
+| Aditi   |         88 |
+| Yash    |         90 |
+| Kuldeep |         85 |
+| Madhu   |         95 |
+| Alkesh  |       87.5 |
+| Rajat   |       84.2 |
+| Ananya  |       90.5 |
+| Suresh  |       73.8 |
+| Divya   |       88.1 |
+| Manoj   |       95.4 |
+| Kavya   |       79.6 |
+| Arjun   |       92.7 |
+| Neha    |       81.5 |
+| Prakash |       87.3 |
+| Ritika  |       89.9 |
+| Harsh   |       77.4 |
+| Ishita  |       93.6 |
+| Deepak  |       85.8 |
+| Mehul   |       90.1 |
+| Tanvi   |         88 |
+| Ramesh  |       74.9 |
+| Jyoti   |       91.7 |
+| Nikhil  |       86.2 |
+| Preeti  |       80.4 |
+| Sameer  |       82.9 |
+| SANJAY  |         92 |
++---------+------------+
+29 rows in set (0.00 sec)
+
+mysql> select name, percentage from students where percentage = (select max(percentage) from students where percentage < (select max(percentage) from students));
++-------+------------+
+| name  | percentage |
++-------+------------+
+| Madhu |         95 |
++-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select max(percentage) from students where percentage < select max(percentage_) from students;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select max(percentage_) from students' at line 1
+mysql> select max(percentage) from students where percentage < select max(percentage) from students;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select max(percentage) from students' at line 1
+mysql> select max(percentage) from students where percentage < (select max(percentage) from students);
++-----------------+
+| max(percentage) |
++-----------------+
+|              95 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select name, percentage from students where percentage in (select max(percentage) from students);
++-------+------------+
+| name  | percentage |
++-------+------------+
+| Manoj |       95.4 |
++-------+------------+
+1 row in set (0.01 sec)
+
+mysql> select name, percentage from students where percentage in (select max(percentage) from students group by course_id);
++--------+------------+
+| name   | percentage |
++--------+------------+
+| Yash   |         90 |
+| Manoj  |       95.4 |
+| Arjun  |       92.7 |
+| Ishita |       93.6 |
+| Mehul  |       90.1 |
++--------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select name, percentage, case when percentage >= 90 then 'A+' when percentage >= 80 then 'A' when percentage >= 70 then 'B' else 'C' end as grade from students;
++---------+------------+-------+
+| name    | percentage | grade |
++---------+------------+-------+
+| sagar   |         86 | A     |
+| Swaleha |         82 | A     |
+| Shivam  |         80 | A     |
+| Aditi   |         88 | A     |
+| Yash    |         90 | A+    |
+| Kuldeep |         85 | A     |
+| Madhu   |         95 | A+    |
+| Alkesh  |       87.5 | A     |
+| Rajat   |       84.2 | A     |
+| Ananya  |       90.5 | A+    |
+| Suresh  |       73.8 | B     |
+| Divya   |       88.1 | A     |
+| Manoj   |       95.4 | A+    |
+| Kavya   |       79.6 | B     |
+| Arjun   |       92.7 | A+    |
+| Neha    |       81.5 | A     |
+| Prakash |       87.3 | A     |
+| Ritika  |       89.9 | A     |
+| Harsh   |       77.4 | B     |
+| Ishita  |       93.6 | A+    |
+| Deepak  |       85.8 | A     |
+| Mehul   |       90.1 | A+    |
+| Tanvi   |         88 | A     |
+| Ramesh  |       74.9 | B     |
+| Jyoti   |       91.7 | A+    |
+| Nikhil  |       86.2 | A     |
+| Preeti  |       80.4 | A     |
+| Sameer  |       82.9 | A     |
+| SANJAY  |         92 | A+    |
++---------+------------+-------+
+29 rows in set (0.00 sec)
+
+mysql> select * from students where percentage > 85;
++----+---------+-----------+------------+
+| id | name    | course_id | percentage |
++----+---------+-----------+------------+
+|  1 | sagar   |         1 |         86 |
+|  4 | Aditi   |         3 |         88 |
+|  5 | Yash    |      NULL |         90 |
+|  7 | Madhu   |         2 |         95 |
+|  8 | Alkesh  |         3 |       87.5 |
+| 10 | Ananya  |         2 |       90.5 |
+| 12 | Divya   |         4 |       88.1 |
+| 13 | Manoj   |         2 |       95.4 |
+| 15 | Arjun   |         3 |       92.7 |
+| 17 | Prakash |         2 |       87.3 |
+| 18 | Ritika  |         1 |       89.9 |
+| 20 | Ishita  |         4 |       93.6 |
+| 21 | Deepak  |         2 |       85.8 |
+| 22 | Mehul   |         1 |       90.1 |
+| 23 | Tanvi   |         3 |         88 |
+| 25 | Jyoti   |         2 |       91.7 |
+| 26 | Nikhil  |         1 |       86.2 |
+| 29 | SANJAY  |         2 |         92 |
++----+---------+-----------+------------+
+18 rows in set (0.00 sec)
+
+mysql> create view high_scores as select * from students where percentage >85;
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> select * from high_scores;
++----+---------+-----------+------------+
+| id | name    | course_id | percentage |
++----+---------+-----------+------------+
+|  1 | sagar   |         1 |         86 |
+|  4 | Aditi   |         3 |         88 |
+|  5 | Yash    |      NULL |         90 |
+|  7 | Madhu   |         2 |         95 |
+|  8 | Alkesh  |         3 |       87.5 |
+| 10 | Ananya  |         2 |       90.5 |
+| 12 | Divya   |         4 |       88.1 |
+| 13 | Manoj   |         2 |       95.4 |
+| 15 | Arjun   |         3 |       92.7 |
+| 17 | Prakash |         2 |       87.3 |
+| 18 | Ritika  |         1 |       89.9 |
+| 20 | Ishita  |         4 |       93.6 |
+| 21 | Deepak  |         2 |       85.8 |
+| 22 | Mehul   |         1 |       90.1 |
+| 23 | Tanvi   |         3 |         88 |
+| 25 | Jyoti   |         2 |       91.7 |
+| 26 | Nikhil  |         1 |       86.2 |
+| 29 | SANJAY  |         2 |         92 |
++----+---------+-----------+------------+
+18 rows in set (0.01 sec)
+
+mysql> create view btech_students as select * from students where course_id = 1;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from btech_students;
++----+---------+-----------+------------+
+| id | name    | course_id | percentage |
++----+---------+-----------+------------+
+|  1 | sagar   |         1 |         86 |
+|  6 | Kuldeep |         1 |         85 |
+|  9 | Rajat   |         1 |       84.2 |
+| 14 | Kavya   |         1 |       79.6 |
+| 18 | Ritika  |         1 |       89.9 |
+| 22 | Mehul   |         1 |       90.1 |
+| 26 | Nikhil  |         1 |       86.2 |
++----+---------+-----------+------------+
+7 rows in set (0.01 sec)
+
+mysql> select name from high_scores where marks < 90;
+ERROR 1054 (42S22): Unknown column 'marks' in 'where clause'
+mysql> select name from high_scores where percentage < 90;
++---------+
+| name    |
++---------+
+| sagar   |
+| Aditi   |
+| Alkesh  |
+| Divya   |
+| Prakash |
+| Ritika  |
+| Deepak  |
+| Tanvi   |
+| Nikhil  |
++---------+
+9 rows in set (0.00 sec)
+
+mysql> select * from high_scores where percentage < 90;
++----+---------+-----------+------------+
+| id | name    | course_id | percentage |
++----+---------+-----------+------------+
+|  1 | sagar   |         1 |         86 |
+|  4 | Aditi   |         3 |         88 |
+|  8 | Alkesh  |         3 |       87.5 |
+| 12 | Divya   |         4 |       88.1 |
+| 17 | Prakash |         2 |       87.3 |
+| 18 | Ritika  |         1 |       89.9 |
+| 21 | Deepak  |         2 |       85.8 |
+| 23 | Tanvi   |         3 |         88 |
+| 26 | Nikhil  |         1 |       86.2 |
++----+---------+-----------+------------+
+9 rows in set (0.00 sec)
+
+mysql> drop view high_scores;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> update btech_students name = 'Sagar' where name = 'sagar';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 'Sagar' where name = 'sagar'' at line 1
+mysql> update btech_students set name = 'Sagar' where name = 'sagar';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from btech_students;
++----+---------+-----------+------------+
+| id | name    | course_id | percentage |
++----+---------+-----------+------------+
+|  1 | Sagar   |         1 |         86 |
+|  6 | Kuldeep |         1 |         85 |
+|  9 | Rajat   |         1 |       84.2 |
+| 14 | Kavya   |         1 |       79.6 |
+| 18 | Ritika  |         1 |       89.9 |
+| 22 | Mehul   |         1 |       90.1 |
+| 26 | Nikhil  |         1 |       86.2 |
++----+---------+-----------+------------+
+7 rows in set (0.00 sec)
