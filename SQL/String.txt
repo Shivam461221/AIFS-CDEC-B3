@@ -1,0 +1,502 @@
+String Functions - String functions are used to manupulate text values in SQL
+ common tasks include changing case, finding length, extracting part of a string
+
+1. UPPER()
+2. LOWEER()
+3. LENGTH()
+4. SUBSTRING()
+
+DATE functions - 
+
+1. NOW() - for current date and time 
+2. CURDATE() - for current date 
+3. DATEDIFF() - 
+
+
+mysql> select * from students;
++----+---------+-----------+------------+
+| id | name    | course_id | percentage |
++----+---------+-----------+------------+
+|  1 | Sagar   |         1 |         86 |
+|  2 | Swaleha |         2 |         82 |
+|  3 | Shivam  |         4 |         80 |
+|  4 | Aditi   |         3 |         88 |
+|  5 | Yash    |      NULL |         90 |
+|  6 | Kuldeep |         1 |         85 |
+|  7 | Madhu   |         2 |         95 |
+|  8 | Alkesh  |         3 |       87.5 |
+| 10 | Ananya  |         2 |       90.5 |
+| 11 | Suresh  |         3 |       73.8 |
+| 12 | Divya   |         4 |       88.1 |
+| 13 | Manoj   |         2 |       95.4 |
+| 14 | Kavya   |         1 |       79.6 |
+| 15 | Arjun   |         3 |       92.7 |
+| 16 | Neha    |         4 |       81.5 |
+| 17 | Prakash |         2 |       87.3 |
+| 18 | Ritika  |         1 |       89.9 |
+| 19 | Harsh   |         3 |       77.4 |
+| 20 | Ishita  |         4 |       93.6 |
+| 21 | Deepak  |         2 |       85.8 |
+| 22 | Mehul   |         1 |       90.1 |
+| 23 | Tanvi   |         3 |         88 |
+| 24 | Ramesh  |         4 |       74.9 |
+| 25 | Jyoti   |         2 |       91.7 |
+| 26 | Nikhil  |         1 |       86.2 |
+| 27 | Preeti  |         3 |       80.4 |
+| 28 | Sameer  |         4 |       82.9 |
+| 29 | SANJAY  |         2 |         92 |
++----+---------+-----------+------------+
+28 rows in set (0.01 sec)
+
+mysql> select upper(name) from students;
++-------------+
+| upper(name) |
++-------------+
+| SAGAR       |
+| SWALEHA     |
+| SHIVAM      |
+| ADITI       |
+| YASH        |
+| KULDEEP     |
+| MADHU       |
+| ALKESH      |
+| ANANYA      |
+| SURESH      |
+| DIVYA       |
+| MANOJ       |
+| KAVYA       |
+| ARJUN       |
+| NEHA        |
+| PRAKASH     |
+| RITIKA      |
+| HARSH       |
+| ISHITA      |
+| DEEPAK      |
+| MEHUL       |
+| TANVI       |
+| RAMESH      |
+| JYOTI       |
+| NIKHIL      |
+| PREETI      |
+| SAMEER      |
+| SANJAY      |
++-------------+
+28 rows in set (0.00 sec)
+
+mysql> insert into students (name, course_id, percentage) values(upper('aashutosh'), 3, 89);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from students;
++----+-----------+-----------+------------+
+| id | name      | course_id | percentage |
++----+-----------+-----------+------------+
+|  1 | Sagar     |         1 |         86 |
+|  2 | Swaleha   |         2 |         82 |
+|  3 | Shivam    |         4 |         80 |
+|  4 | Aditi     |         3 |         88 |
+|  5 | Yash      |      NULL |         90 |
+|  6 | Kuldeep   |         1 |         85 |
+|  7 | Madhu     |         2 |         95 |
+|  8 | Alkesh    |         3 |       87.5 |
+| 10 | Ananya    |         2 |       90.5 |
+| 11 | Suresh    |         3 |       73.8 |
+| 12 | Divya     |         4 |       88.1 |
+| 13 | Manoj     |         2 |       95.4 |
+| 14 | Kavya     |         1 |       79.6 |
+| 15 | Arjun     |         3 |       92.7 |
+| 16 | Neha      |         4 |       81.5 |
+| 17 | Prakash   |         2 |       87.3 |
+| 18 | Ritika    |         1 |       89.9 |
+| 19 | Harsh     |         3 |       77.4 |
+| 20 | Ishita    |         4 |       93.6 |
+| 21 | Deepak    |         2 |       85.8 |
+| 22 | Mehul     |         1 |       90.1 |
+| 23 | Tanvi     |         3 |         88 |
+| 24 | Ramesh    |         4 |       74.9 |
+| 25 | Jyoti     |         2 |       91.7 |
+| 26 | Nikhil    |         1 |       86.2 |
+| 27 | Preeti    |         3 |       80.4 |
+| 28 | Sameer    |         4 |       82.9 |
+| 29 | SANJAY    |         2 |         92 |
+| 30 | AASHUTOSH |         3 |         89 |
++----+-----------+-----------+------------+
+29 rows in set (0.00 sec)
+
+mysql> select lower(name) from students;
++-------------+
+| lower(name) |
++-------------+
+| sagar       |
+| swaleha     |
+| shivam      |
+| aditi       |
+| yash        |
+| kuldeep     |
+| madhu       |
+| alkesh      |
+| ananya      |
+| suresh      |
+| divya       |
+| manoj       |
+| kavya       |
+| arjun       |
+| neha        |
+| prakash     |
+| ritika      |
+| harsh       |
+| ishita      |
+| deepak      |
+| mehul       |
+| tanvi       |
+| ramesh      |
+| jyoti       |
+| nikhil      |
+| preeti      |
+| sameer      |
+| sanjay      |
+| aashutosh   |
++-------------+
+29 rows in set (0.00 sec)
+
+mysql> insert into students (name, course_id, percentage) values(lower('AVINASH'), 1, 98);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from students;
++----+-----------+-----------+------------+
+| id | name      | course_id | percentage |
++----+-----------+-----------+------------+
+|  1 | Sagar     |         1 |         86 |
+|  2 | Swaleha   |         2 |         82 |
+|  3 | Shivam    |         4 |         80 |
+|  4 | Aditi     |         3 |         88 |
+|  5 | Yash      |      NULL |         90 |
+|  6 | Kuldeep   |         1 |         85 |
+|  7 | Madhu     |         2 |         95 |
+|  8 | Alkesh    |         3 |       87.5 |
+| 10 | Ananya    |         2 |       90.5 |
+| 11 | Suresh    |         3 |       73.8 |
+| 12 | Divya     |         4 |       88.1 |
+| 13 | Manoj     |         2 |       95.4 |
+| 14 | Kavya     |         1 |       79.6 |
+| 15 | Arjun     |         3 |       92.7 |
+| 16 | Neha      |         4 |       81.5 |
+| 17 | Prakash   |         2 |       87.3 |
+| 18 | Ritika    |         1 |       89.9 |
+| 19 | Harsh     |         3 |       77.4 |
+| 20 | Ishita    |         4 |       93.6 |
+| 21 | Deepak    |         2 |       85.8 |
+| 22 | Mehul     |         1 |       90.1 |
+| 23 | Tanvi     |         3 |         88 |
+| 24 | Ramesh    |         4 |       74.9 |
+| 25 | Jyoti     |         2 |       91.7 |
+| 26 | Nikhil    |         1 |       86.2 |
+| 27 | Preeti    |         3 |       80.4 |
+| 28 | Sameer    |         4 |       82.9 |
+| 29 | SANJAY    |         2 |         92 |
+| 30 | AASHUTOSH |         3 |         89 |
+| 31 | avinash   |         1 |         98 |
++----+-----------+-----------+------------+
+30 rows in set (0.00 sec)
+
+mysql> select length(name) from students;
++--------------+
+| length(name) |
++--------------+
+|            5 |
+|            7 |
+|            6 |
+|            5 |
+|            4 |
+|            7 |
+|            5 |
+|            6 |
+|            6 |
+|            6 |
+|            5 |
+|            5 |
+|            5 |
+|            5 |
+|            4 |
+|            7 |
+|            6 |
+|            5 |
+|            6 |
+|            6 |
+|            5 |
+|            5 |
+|            6 |
+|            5 |
+|            6 |
+|            6 |
+|            6 |
+|            6 |
+|            9 |
+|            7 |
++--------------+
+30 rows in set (0.01 sec)
+
+mysql> select name from stduents where length(name) > 6;
+ERROR 1146 (42S02): Table 'student_db.stduents' doesn't exist
+mysql> select name from students where length(name) > 6;
++-----------+
+| name      |
++-----------+
+| Swaleha   |
+| Kuldeep   |
+| Prakash   |
+| AASHUTOSH |
+| avinash   |
++-----------+
+5 rows in set (0.00 sec)
+
+mysql> select name from students where length(name) < 6;
++-------+
+| name  |
++-------+
+| Sagar |
+| Aditi |
+| Yash  |
+| Madhu |
+| Divya |
+| Manoj |
+| Kavya |
+| Arjun |
+| Neha  |
+| Harsh |
+| Mehul |
+| Tanvi |
+| Jyoti |
++-------+
+13 rows in set (0.01 sec)
+
+mysql> select substring(name, 1, 3) from students;
++-----------------------+
+| substring(name, 1, 3) |
++-----------------------+
+| Sag                   |
+| Swa                   |
+| Shi                   |
+| Adi                   |
+| Yas                   |
+| Kul                   |
+| Mad                   |
+| Alk                   |
+| Ana                   |
+| Sur                   |
+| Div                   |
+| Man                   |
+| Kav                   |
+| Arj                   |
+| Neh                   |
+| Pra                   |
+| Rit                   |
+| Har                   |
+| Ish                   |
+| Dee                   |
+| Meh                   |
+| Tan                   |
+| Ram                   |
+| Jyo                   |
+| Nik                   |
+| Pre                   |
+| Sam                   |
+| SAN                   |
+| AAS                   |
+| avi                   |
++-----------------------+
+30 rows in set (0.00 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_student_db |
++----------------------+
+| btech_students       |
+| courses              |
+| students             |
++----------------------+
+3 rows in set (0.00 sec)
+
+mysql> create table payment (id int primary key auto_increment, amount double, mode varchar(50), student_id int, message varchar(100), payment_date date, foreign_key (student_id) references students(id) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(student_id) references students(id) )' at line 1
+mysql> create table payment (id int primary key auto_increment, amount double, mode varchar(50), student_id int, message varchar(100), payment_date date, foreign key (student_id) references students(id) );
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc payment;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| id           | int          | NO   | PRI | NULL    | auto_increment |
+| amount       | double       | YES  |     | NULL    |                |
+| mode         | varchar(50)  | YES  |     | NULL    |                |
+| student_id   | int          | YES  | MUL | NULL    |                |
+| message      | varchar(100) | YES  |     | NULL    |                |
+| payment_date | date         | YES  |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.01 sec)
+
+mysql> insert into payment (amount, mode, student_id, message, payment_date) values (40000, 'UPI', 2, 'Sem-1 fee', now());
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql> select * from payment;
++----+--------+------+------------+-----------+--------------+
+| id | amount | mode | student_id | message   | payment_date |
++----+--------+------+------------+-----------+--------------+
+|  1 |  40000 | UPI  |          2 | Sem-1 fee | 2025-08-25   |
++----+--------+------+------------+-----------+--------------+
+1 row in set (0.00 sec)
+
+mysql> insert into payment (amount, mode, student_id, message, payment_date) values (40000, 'UPI', 2, 'Sem-1 fee', now()), (50000, 'NEFT', 1, 'Sem-1 fee', now()), (45000, 'Cash', 3, 'Sem-1 fee', 2025-08-23);
+ERROR 1292 (22007): Incorrect date value: '1994' for column 'payment_date' at row 3
+mysql> insert into payment (amount, mode, student_id, message, payment_date) values (40000, 'UPI', 2, 'Sem-1 fee', now()), (50000, 'NEFT', 1, 'Sem-1 fee', now()), (45000, 'Cash', 3, 'Sem-1 fee', now());
+Query OK, 3 rows affected, 3 warnings (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 3
+
+mysql> select * from payment;
++----+--------+------+------------+-----------+--------------+
+| id | amount | mode | student_id | message   | payment_date |
++----+--------+------+------------+-----------+--------------+
+|  1 |  40000 | UPI  |          2 | Sem-1 fee | 2025-08-25   |
+|  5 |  40000 | UPI  |          2 | Sem-1 fee | 2025-08-25   |
+|  6 |  50000 | NEFT |          1 | Sem-1 fee | 2025-08-25   |
+|  7 |  45000 | Cash |          3 | Sem-1 fee | 2025-08-25   |
++----+--------+------+------------+-----------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into payment (amount, mode, student_id, message, payment_date) values (40000, 'UPI', 5, 'Sem-1 fee', '2025-08-23');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from payment;
++----+--------+------+------------+-----------+--------------+
+| id | amount | mode | student_id | message   | payment_date |
++----+--------+------+------------+-----------+--------------+
+|  1 |  40000 | UPI  |          2 | Sem-1 fee | 2025-08-25   |
+|  5 |  40000 | UPI  |          2 | Sem-1 fee | 2025-08-25   |
+|  6 |  50000 | NEFT |          1 | Sem-1 fee | 2025-08-25   |
+|  7 |  45000 | Cash |          3 | Sem-1 fee | 2025-08-25   |
+|  8 |  40000 | UPI  |          5 | Sem-1 fee | 2025-08-23   |
++----+--------+------+------------+-----------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> update payment set student_is=4 where id = 5;
+ERROR 1054 (42S22): Unknown column 'student_is' in 'field list'
+mysql> update payment set student_id = 4 where id = 5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from payment;
++----+--------+------+------------+-----------+--------------+
+| id | amount | mode | student_id | message   | payment_date |
++----+--------+------+------------+-----------+--------------+
+|  1 |  40000 | UPI  |          2 | Sem-1 fee | 2025-08-25   |
+|  5 |  40000 | UPI  |          4 | Sem-1 fee | 2025-08-25   |
+|  6 |  50000 | NEFT |          1 | Sem-1 fee | 2025-08-25   |
+|  7 |  45000 | Cash |          3 | Sem-1 fee | 2025-08-25   |
+|  8 |  40000 | UPI  |          5 | Sem-1 fee | 2025-08-23   |
++----+--------+------+------------+-----------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from payment where payment_date = curdate();
++----+--------+------+------------+-----------+--------------+
+| id | amount | mode | student_id | message   | payment_date |
++----+--------+------+------------+-----------+--------------+
+|  1 |  40000 | UPI  |          2 | Sem-1 fee | 2025-08-25   |
+|  5 |  40000 | UPI  |          4 | Sem-1 fee | 2025-08-25   |
+|  6 |  50000 | NEFT |          1 | Sem-1 fee | 2025-08-25   |
+|  7 |  45000 | Cash |          3 | Sem-1 fee | 2025-08-25   |
++----+--------+------+------------+-----------+--------------+
+4 rows in set (0.00 sec)
+
+
+
+
+#Stored Procedure - A block of SQL code that is stored in the database and can be executed whenever needed.
+
+Advantage - resuability, better performance , security 
+
+mysql> delimiter //
+mysql> create procedure getAllStudents() begin select * from students; end //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delimiter ;
+mysql> call getAllStudents;
++----+-----------+-----------+------------+
+| id | name      | course_id | percentage |
++----+-----------+-----------+------------+
+|  1 | Sagar     |         1 |         86 |
+|  2 | Swaleha   |         2 |         82 |
+|  3 | Shivam    |         4 |         80 |
+|  4 | Aditi     |         3 |         88 |
+|  5 | Yash      |      NULL |         90 |
+|  6 | Kuldeep   |         1 |         85 |
+|  7 | Madhu     |         2 |         95 |
+|  8 | Alkesh    |         3 |       87.5 |
+| 10 | Ananya    |         2 |       90.5 |
+| 11 | Suresh    |         3 |       73.8 |
+| 12 | Divya     |         4 |       88.1 |
+| 13 | Manoj     |         2 |       95.4 |
+| 14 | Kavya     |         1 |       79.6 |
+| 15 | Arjun     |         3 |       92.7 |
+| 16 | Neha      |         4 |       81.5 |
+| 17 | Prakash   |         2 |       87.3 |
+| 18 | Ritika    |         1 |       89.9 |
+| 19 | Harsh     |         3 |       77.4 |
+| 20 | Ishita    |         4 |       93.6 |
+| 21 | Deepak    |         2 |       85.8 |
+| 22 | Mehul     |         1 |       90.1 |
+| 23 | Tanvi     |         3 |         88 |
+| 24 | Ramesh    |         4 |       74.9 |
+| 25 | Jyoti     |         2 |       91.7 |
+| 26 | Nikhil    |         1 |       86.2 |
+| 27 | Preeti    |         3 |       80.4 |
+| 28 | Sameer    |         4 |       82.9 |
+| 29 | SANJAY    |         2 |         92 |
+| 30 | AASHUTOSH |         3 |         89 |
+| 31 | avinash   |         1 |         98 |
++----+-----------+-----------+------------+
+30 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> select * from students where percentage>90;
++----+---------+-----------+------------+
+| id | name    | course_id | percentage |
++----+---------+-----------+------------+
+|  7 | Madhu   |         2 |         95 |
+| 10 | Ananya  |         2 |       90.5 |
+| 13 | Manoj   |         2 |       95.4 |
+| 15 | Arjun   |         3 |       92.7 |
+| 20 | Ishita  |         4 |       93.6 |
+| 22 | Mehul   |         1 |       90.1 |
+| 25 | Jyoti   |         2 |       91.7 |
+| 29 | SANJAY  |         2 |         92 |
+| 31 | avinash |         1 |         98 |
++----+---------+-----------+------------+
+9 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create procedure getToppers() begin select * from students where percentage>90; end //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delimiter;
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter' at line 1
+mysql> delimiter ;
+mysql> call getToppers();
++----+---------+-----------+------------+
+| id | name    | course_id | percentage |
++----+---------+-----------+------------+
+|  7 | Madhu   |         2 |         95 |
+| 10 | Ananya  |         2 |       90.5 |
+| 13 | Manoj   |         2 |       95.4 |
+| 15 | Arjun   |         3 |       92.7 |
+| 20 | Ishita  |         4 |       93.6 |
+| 22 | Mehul   |         1 |       90.1 |
+| 25 | Jyoti   |         2 |       91.7 |
+| 29 | SANJAY  |         2 |         92 |
+| 31 | avinash |         1 |         98 |
++----+---------+-----------+------------+
+9 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
