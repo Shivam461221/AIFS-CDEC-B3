@@ -1,0 +1,180 @@
+mysql> create database mydb;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use mydb;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table users (id int primary key auto_increment, name varchar(50), email varchar(50));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc users;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| email | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into users (name, email) values ('shivam', 'shivam@123');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from users;
++----+--------+------------+
+| id | name   | email      |
++----+--------+------------+
+|  1 | shivam | shivam@123 |
++----+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger before_user_insert before insert on users for each row begin set new.name = upper(new.name); end //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delimiter ;
+mysql> insert into users (name, email) values ('sagar', 'sagar@123');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from users;
++----+--------+------------+
+| id | name   | email      |
++----+--------+------------+
+|  1 | shivam | shivam@123 |
+|  2 | SAGAR  | sagar@123  |
++----+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into users (name, email) values ('Swaleha', 'swaleha@123');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from users;
++----+---------+-------------+
+| id | name    | email       |
++----+---------+-------------+
+|  1 | shivam  | shivam@123  |
+|  2 | SAGAR   | sagar@123   |
+|  3 | SWALEHA | swaleha@123 |
++----+---------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> create table user_log(id int primary key auto_increment, name varchar(50), log time);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc user_log;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| log   | time        | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> select * from user_log;
+Empty set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger after_user_insert after insert on users for each row begin insert into user_log(name, log) values (new.name, now()); end//
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delimiter ;
+mysql> insert into users (name, email) values ('aditi', 'aditi@123');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from users;
++----+---------+-------------+
+| id | name    | email       |
++----+---------+-------------+
+|  1 | shivam  | shivam@123  |
+|  2 | SAGAR   | sagar@123   |
+|  3 | SWALEHA | swaleha@123 |
+|  4 | ADITI   | aditi@123   |
++----+---------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from user_log;
++----+-------+----------+
+| id | name  | log      |
++----+-------+----------+
+|  1 | ADITI | 17:02:51 |
++----+-------+----------+
+1 row in set (0.00 sec)
+
+mysql> create table user_delete_log(id int primary key auto_increment, name varchar(50), log time);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> delimiter //
+mysql> create trigger after_delete_user after delete on users for each row begin insert into user_delete_log(name, log) values(old.name, now()); end//
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delimiter ;
+mysql> delete from users where id = 1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from users;
++----+---------+-------------+
+| id | name    | email       |
++----+---------+-------------+
+|  2 | SAGAR   | sagar@123   |
+|  3 | SWALEHA | swaleha@123 |
+|  4 | ADITI   | aditi@123   |
++----+---------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from user_delete_log;
++----+--------+----------+
+| id | name   | log      |
++----+--------+----------+
+|  1 | shivam | 17:08:24 |
++----+--------+----------+
+1 row in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger before_update_user before on users for each row begin if new.name = '' then set new.name = old.name; if end; end//
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on users for each row begin if new.name = '' then set new.name = old.name; if en' at line 1
+mysql> create trigger before_update_user before update on users for each row begin if new.name = '' then set new.name = old.name; if end; end//
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '; end' at line 1
+mysql> create trigger before_update_user before update on users for each row begin if new.name = '' then set new.name = old.name; end if; end//
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> delimiter ;
+mysql> select * from users;
++----+---------+-------------+
+| id | name    | email       |
++----+---------+-------------+
+|  2 | SAGAR   | sagar@123   |
+|  3 | SWALEHA | swaleha@123 |
+|  4 | ADITI   | aditi@123   |
++----+---------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> update users set name = '' where id = 4;
+Query OK, 0 rows affected (0.01 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select * from users;
++----+---------+-------------+
+| id | name    | email       |
++----+---------+-------------+
+|  2 | SAGAR   | sagar@123   |
+|  3 | SWALEHA | swaleha@123 |
+|  4 | ADITI   | aditi@123   |
++----+---------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> update users set name = 'Aditi khute' where id = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from users;
++----+-------------+-------------+
+| id | name        | email       |
++----+-------------+-------------+
+|  2 | SAGAR       | sagar@123   |
+|  3 | SWALEHA     | swaleha@123 |
+|  4 | Aditi khute | aditi@123   |
++----+-------------+-------------+
+3 rows in set (0.00 sec)
