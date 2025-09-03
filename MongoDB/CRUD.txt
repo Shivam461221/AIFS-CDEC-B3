@@ -1,0 +1,410 @@
+ use mydb
+switched to db mydb
+mydb> show collections
+courses
+user
+mydb> db.user.find()
+[
+  {
+    _id: ObjectId('68b6d57c3d9333781773518a'),
+    name: 'Sagar',
+    age: 22,
+    course: 'MCA'
+  },
+  {
+    _id: ObjectId('68b6d5873d9333781773518b'),
+    name: 'Swaleha',
+    age: 23,
+    course: 'MCA'
+  }
+]
+mydb> use companyDB
+switched to db companyDB
+companyDB> db.createCollection('employees')
+{ ok: 1 }
+companyDB> show collections
+employees
+companyDB> db.employees.insertOne({name:'Shivam Lowanshi', age:25, department:'Development', salary:50000, skills:['Java', 'JS', 'React', 'SQL'], joiningDate:new Date('2024-11-07')})
+{
+  acknowledged: true,
+  insertedId: ObjectId('68b8240fc66b9db399735189')
+}
+companyDB> db.employees.find()
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 25,
+    department: 'Development',
+    salary: 50000,
+    skills: [ 'Java', 'JS', 'React', 'SQL' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.insertOne({name:'Sagar', age:23, department:'Development', salary:55000, skills:['Java', 'JS', 'Angular', 'SQL'], joiningDate:new Date('2023-11-07')})
+{
+  acknowledged: true,
+  insertedId: ObjectId('68b82469c66b9db39973518a')
+}
+companyDB> db.employees.insertOne({name:'Swaleha', age:22, department:'Development', salary:45000, skills:['Java', 'JS', 'Angular', 'MongoDB'], joiningDate:new Date('2023-06-01')})
+{
+  acknowledged: true,
+  insertedId: ObjectId('68b8248ac66b9db39973518b')
+}
+companyDB> db.employees.find()
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 25,
+    department: 'Development',
+    salary: 50000,
+    skills: [ 'Java', 'JS', 'React', 'SQL' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.insertMany([{name:'Aditi',age:23, department:'HR', salary:50000,skills:['java', 'Communication', 'Frontend'], joiningdate:new Date('2024-05-12')}, {name:'Yash', age:25, department:'Technical support', salary:40000, joiningDate:new Date('2025-01-01')}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68b8256ec66b9db39973518c'),
+    '1': ObjectId('68b8256ec66b9db39973518d')
+  }
+}
+companyDB> db.employees.find()
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 25,
+    department: 'Development',
+    salary: 50000,
+    skills: [ 'Java', 'JS', 'React', 'SQL' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find().pretty()
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 25,
+    department: 'Development',
+    salary: 50000,
+    skills: [ 'Java', 'JS', 'React', 'SQL' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({department:'Development'})
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 25,
+    department: 'Development',
+    salary: 50000,
+    skills: [ 'Java', 'JS', 'React', 'SQL' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({skills:'Java'})
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 25,
+    department: 'Development',
+    salary: 50000,
+    skills: [ 'Java', 'JS', 'React', 'SQL' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.updateOne({name:'Shivam Lowanshi'}, {$set:{salary:85000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+companyDB> db.employees.find()
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 25,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.updateOne({name:'Shivam Lowanshi'}, {$inc:{age:1}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+companyDB> db.employees.find()
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.updateMany({department:'Development'}, {$push:{skills:'Python'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+companyDB> db.employees.find()
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  }
+]
