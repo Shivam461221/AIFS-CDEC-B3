@@ -1,0 +1,1130 @@
+ show collections
+employees
+companyDB> db.employees.find()
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({age:25})
+[
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({age:23})
+[
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({age:{$gt:23}})
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({age:{$lt:23}})
+[
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({age:{$eq:23}})
+[
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({age:{$ne:23}})
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({age:{$lse:23}})
+MongoServerError[BadValue]: unknown operator: $lse
+companyDB> db.employees.find({age:{$lte:23}})
+[
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({age:{$gte:23}})
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({salary:{$gt:40000}})
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({salary:{$lt:40000}})
+
+companyDB> db.employees.find({salary:{$lte:40000}})
+[
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({skills:'JS'})
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({skills:'Java'})
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({skills:'Python'})
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({skills:{$all:['Java', 'JS']})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:47)
+
+> 1 | db.employees.find({skills:{$all:['Java', 'JS']})
+    |                                                ^
+  2 |
+
+companyDB> db.employees.find({skills:{$all:['Java', 'JS']}})
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find()
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({skills:{$size:3}})
+[
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({skills:{$size:1}})
+
+companyDB> db.employees.find({skills:{$size:5}})
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find({skills:{$size:{$ls:5}}})
+MongoServerError[BadValue]: Failed to parse $size. Expected a number in: $size: { $ls: 5 }
+companyDB> db.employees.find({skills:{$size:{$lt:5}}})
+MongoServerError[BadValue]: Failed to parse $size. Expected a number in: $size: { $lt: 5 }
+companyDB> db.employees.find({skills:{$size:{$gt:1}}})
+MongoServerError[BadValue]: Failed to parse $size. Expected a number in: $size: { $gt: 1 }
+companyDB> db.employees.find({skills:{$size:3}})
+[
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find().sort({age:1})
+[
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find().sort({age:-1})
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find().sort({age:-1}).limit(2)
+[
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find().sort({age:1}).limit(3)
+[
+  {
+    _id: ObjectId('68b8248ac66b9db39973518b'),
+    name: 'Swaleha',
+    age: 22,
+    department: 'Development',
+    salary: 45000,
+    skills: [ 'Java', 'JS', 'Angular', 'MongoDB', 'Python' ],
+    joiningDate: ISODate('2023-06-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b82469c66b9db39973518a'),
+    name: 'Sagar',
+    age: 23,
+    department: 'Development',
+    salary: 55000,
+    skills: [ 'Java', 'JS', 'Angular', 'SQL', 'Python' ],
+    joiningDate: ISODate('2023-11-07T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find().sort({age:1}).skip(2)
+[
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8240fc66b9db399735189'),
+    name: 'Shivam Lowanshi',
+    age: 26,
+    department: 'Development',
+    salary: 85000,
+    skills: [ 'Java', 'JS', 'React', 'SQL', 'Python' ],
+    joiningDate: ISODate('2024-11-07T00:00:00.000Z')
+  }
+]
+companyDB> db.employees.find().sort({age:1}).skip(2).limit(2)
+[
+  {
+    _id: ObjectId('68b8256ec66b9db39973518c'),
+    name: 'Aditi',
+    age: 23,
+    department: 'HR',
+    salary: 50000,
+    skills: [ 'java', 'Communication', 'Frontend' ],
+    joiningdate: ISODate('2024-05-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('68b8256ec66b9db39973518d'),
+    name: 'Yash',
+    age: 25,
+    department: 'Technical support',
+    salary: 40000,
+    joiningDate: ISODate('2025-01-01T00:00:00.000Z')
+  }
+]
+companyDB> db.createCollection('posts')
+{ ok: 1 }
+companyDB> show collections
+employees
+posts
+companyDB> for(let i=0; i<=1000; i++){db.posts.insertOne({username:'user'+i, createdDate:new Date()})}
+{
+  acknowledged: true,
+  insertedId: ObjectId('68b97917b4dc7f6122735571')
+}
+companyDB> db.posts.find()
+[
+  {
+    _id: ObjectId('68b97916b4dc7f6122735189'),
+    username: 'user0',
+    createdDate: ISODate('2025-09-04T11:33:42.389Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f612273518a'),
+    username: 'user1',
+    createdDate: ISODate('2025-09-04T11:33:42.394Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f612273518b'),
+    username: 'user2',
+    createdDate: ISODate('2025-09-04T11:33:42.395Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f612273518c'),
+    username: 'user3',
+    createdDate: ISODate('2025-09-04T11:33:42.397Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f612273518d'),
+    username: 'user4',
+    createdDate: ISODate('2025-09-04T11:33:42.398Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f612273518e'),
+    username: 'user5',
+    createdDate: ISODate('2025-09-04T11:33:42.400Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f612273518f'),
+    username: 'user6',
+    createdDate: ISODate('2025-09-04T11:33:42.402Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f6122735190'),
+    username: 'user7',
+    createdDate: ISODate('2025-09-04T11:33:42.403Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f6122735191'),
+    username: 'user8',
+    createdDate: ISODate('2025-09-04T11:33:42.404Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f6122735192'),
+    username: 'user9',
+    createdDate: ISODate('2025-09-04T11:33:42.405Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f6122735193'),
+    username: 'user10',
+    createdDate: ISODate('2025-09-04T11:33:42.407Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f6122735194'),
+    username: 'user11',
+    createdDate: ISODate('2025-09-04T11:33:42.408Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f6122735195'),
+    username: 'user12',
+    createdDate: ISODate('2025-09-04T11:33:42.410Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f6122735196'),
+    username: 'user13',
+    createdDate: ISODate('2025-09-04T11:33:42.411Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f6122735197'),
+    username: 'user14',
+    createdDate: ISODate('2025-09-04T11:33:42.412Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f6122735198'),
+    username: 'user15',
+    createdDate: ISODate('2025-09-04T11:33:42.413Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f6122735199'),
+    username: 'user16',
+    createdDate: ISODate('2025-09-04T11:33:42.414Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f612273519a'),
+    username: 'user17',
+    createdDate: ISODate('2025-09-04T11:33:42.416Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f612273519b'),
+    username: 'user18',
+    createdDate: ISODate('2025-09-04T11:33:42.418Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f612273519c'),
+    username: 'user19',
+    createdDate: ISODate('2025-09-04T11:33:42.419Z')
+  }
+]
+Type "it" for more
+companyDB> it
+[
+  {
+    _id: ObjectId('68b97916b4dc7f612273519d'),
+    username: 'user20',
+    createdDate: ISODate('2025-09-04T11:33:42.420Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f612273519e'),
+    username: 'user21',
+    createdDate: ISODate('2025-09-04T11:33:42.421Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f612273519f'),
+    username: 'user22',
+    createdDate: ISODate('2025-09-04T11:33:42.423Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351a0'),
+    username: 'user23',
+    createdDate: ISODate('2025-09-04T11:33:42.424Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351a1'),
+    username: 'user24',
+    createdDate: ISODate('2025-09-04T11:33:42.425Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351a2'),
+    username: 'user25',
+    createdDate: ISODate('2025-09-04T11:33:42.427Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351a3'),
+    username: 'user26',
+    createdDate: ISODate('2025-09-04T11:33:42.428Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351a4'),
+    username: 'user27',
+    createdDate: ISODate('2025-09-04T11:33:42.429Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351a5'),
+    username: 'user28',
+    createdDate: ISODate('2025-09-04T11:33:42.430Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351a6'),
+    username: 'user29',
+    createdDate: ISODate('2025-09-04T11:33:42.431Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351a7'),
+    username: 'user30',
+    createdDate: ISODate('2025-09-04T11:33:42.433Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351a8'),
+    username: 'user31',
+    createdDate: ISODate('2025-09-04T11:33:42.434Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351a9'),
+    username: 'user32',
+    createdDate: ISODate('2025-09-04T11:33:42.435Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351aa'),
+    username: 'user33',
+    createdDate: ISODate('2025-09-04T11:33:42.436Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351ab'),
+    username: 'user34',
+    createdDate: ISODate('2025-09-04T11:33:42.438Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351ac'),
+    username: 'user35',
+    createdDate: ISODate('2025-09-04T11:33:42.440Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351ad'),
+    username: 'user36',
+    createdDate: ISODate('2025-09-04T11:33:42.441Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351ae'),
+    username: 'user37',
+    createdDate: ISODate('2025-09-04T11:33:42.442Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351af'),
+    username: 'user38',
+    createdDate: ISODate('2025-09-04T11:33:42.443Z')
+  },
+  {
+    _id: ObjectId('68b97916b4dc7f61227351b0'),
+    username: 'user39',
+    createdDate: ISODate('2025-09-04T11:33:42.444Z')
+  }
+]
+Type "it" for more
+companyDB> db.posts.find({username:'user500'})
+[
+  {
+    _id: ObjectId('68b97916b4dc7f612273537d'),
+    username: 'user500',
+    createdDate: ISODate('2025-09-04T11:33:42.951Z')
+  }
+]
+companyDB> db.posts.find({username:'user500'}).explain('executionStats')
+{
+  explainVersion: '1',
+  queryPlanner: {
+    namespace: 'companyDB.posts',
+    parsedQuery: { username: { '$eq': 'user500' } },
+    indexFilterSet: false,
+    queryHash: '1DCAA255',
+    planCacheShapeHash: '1DCAA255',
+    planCacheKey: 'E4474531',
+    optimizationTimeMillis: 0,
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    prunedSimilarIndexes: false,
+    winningPlan: {
+      isCached: false,
+      stage: 'COLLSCAN',
+      filter: { username: { '$eq': 'user500' } },
+      direction: 'forward'
+    },
+    rejectedPlans: []
+  },
+  executionStats: {
+    executionSuccess: true,
+    nReturned: 1,
+    executionTimeMillis: 0,
+    totalKeysExamined: 0,
+    totalDocsExamined: 1001,
+    executionStages: {
+      isCached: false,
+      stage: 'COLLSCAN',
+      filter: { username: { '$eq': 'user500' } },
+      nReturned: 1,
+      executionTimeMillisEstimate: 0,
+      works: 1002,
+      advanced: 1,
+      needTime: 1000,
+      needYield: 0,
+      saveState: 0,
+      restoreState: 0,
+      isEOF: 1,
+      direction: 'forward',
+      docsExamined: 1001
+    }
+  },
+  queryShapeHash: 'D6423015941E4781BCDDFAB633CD5D84A289D09D7853F34FF5FE70E94F832581',
+  command: {
+    find: 'posts',
+    filter: { username: 'user500' },
+    '$db': 'companyDB'
+  },
+  serverInfo: {
+    host: 'Shivam',
+    port: 27017,
+    version: '8.0.13',
+    gitVersion: '8dc5cd2a30c4524132e2d44bb314544dc477e611'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeRestricted',
+    internalQueryPlannerIgnoreIndexWithCollationForRegex: 1
+  },
+  ok: 1
+}
+companyDB> db.posts.createIndex({'username':1})
+username_1
+companyDB> db.posts.find({username:'user500'})
+[
+  {
+    _id: ObjectId('68b97916b4dc7f612273537d'),
+    username: 'user500',
+    createdDate: ISODate('2025-09-04T11:33:42.951Z')
+  }
+]
+companyDB> db.posts.find({username:'user500'}).explain('executionStats')
+{
+  explainVersion: '1',
+  queryPlanner: {
+    namespace: 'companyDB.posts',
+    parsedQuery: { username: { '$eq': 'user500' } },
+    indexFilterSet: false,
+    queryHash: '1DCAA255',
+    planCacheShapeHash: '1DCAA255',
+    planCacheKey: 'AEA547E9',
+    optimizationTimeMillis: 0,
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    prunedSimilarIndexes: false,
+    winningPlan: {
+      isCached: false,
+      stage: 'FETCH',
+      inputStage: {
+        stage: 'IXSCAN',
+        keyPattern: { username: 1 },
+        indexName: 'username_1',
+        isMultiKey: false,
+        multiKeyPaths: { username: [] },
+        isUnique: false,
+        isSparse: false,
+        isPartial: false,
+        indexVersion: 2,
+        direction: 'forward',
+        indexBounds: { username: [ '["user500", "user500"]' ] }
+      }
+    },
+    rejectedPlans: []
+  },
+  executionStats: {
+    executionSuccess: true,
+    nReturned: 1,
+    executionTimeMillis: 0,
+    totalKeysExamined: 1,
+    totalDocsExamined: 1,
+    executionStages: {
+      isCached: false,
+      stage: 'FETCH',
+      nReturned: 1,
+      executionTimeMillisEstimate: 0,
+      works: 2,
+      advanced: 1,
+      needTime: 0,
+      needYield: 0,
+      saveState: 0,
+      restoreState: 0,
+      isEOF: 1,
+      docsExamined: 1,
+      alreadyHasObj: 0,
+      inputStage: {
+        stage: 'IXSCAN',
+        nReturned: 1,
+        executionTimeMillisEstimate: 0,
+        works: 2,
+        advanced: 1,
+        needTime: 0,
+        needYield: 0,
+        saveState: 0,
+        restoreState: 0,
+        isEOF: 1,
+        keyPattern: { username: 1 },
+        indexName: 'username_1',
+        isMultiKey: false,
+        multiKeyPaths: { username: [] },
+        isUnique: false,
+        isSparse: false,
+        isPartial: false,
+        indexVersion: 2,
+        direction: 'forward',
+        indexBounds: { username: [ '["user500", "user500"]' ] },
+        keysExamined: 1,
+        seeks: 1,
+        dupsTested: 0,
+        dupsDropped: 0
+      }
+    }
+  },
+  queryShapeHash: 'D6423015941E4781BCDDFAB633CD5D84A289D09D7853F34FF5FE70E94F832581',
+  command: {
+    find: 'posts',
+    filter: { username: 'user500' },
+    '$db': 'companyDB'
+  },
+  serverInfo: {
+    host: 'Shivam',
+    port: 27017,
+    version: '8.0.13',
+    gitVersion: '8dc5cd2a30c4524132e2d44bb314544dc477e611'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeRestricted',
+    internalQueryPlannerIgnoreIndexWithCollationForRegex: 1
+  },
+  ok: 1
