@@ -1,0 +1,279 @@
+companyDB> show collections
+employees
+posts
+companyDB> db.createCollection('users')
+{ ok: 1 }
+companyDB> db.users.insertOne({name:'Shivam', email:'shivam@123', address:{houseNo:6, colony:'Vidhya nagar', area:'Bhawarkua', pincode:452001}})
+{
+  acknowledged: true,
+  insertedId: ObjectId('68bac637e77d00b64e735189')
+}
+companyDB> db.users.find()
+[
+  {
+    _id: ObjectId('68bac637e77d00b64e735189'),
+    name: 'Shivam',
+    email: 'shivam@123',
+    address: {
+      houseNo: 6,
+      colony: 'Vidhya nagar',
+      area: 'Bhawarkua',
+      pincode: 452001
+    }
+  }
+]
+companyDB> db.posts.dropCollection()
+TypeError: db.posts.dropCollection is not a function
+companyDB> db.posts.drop()
+true
+companyDB> show collections
+employees
+users
+companyDB> db.createCollection('posts')
+{ ok: 1 }
+companyDB> db.posts.insertOne({title:'MongoDB tutorial', content:'Relationships in mongoDB', author:'Shivam', comments:[{author:'sagar:, text:'Nice', createdAt:new DateTime()}, {author:'Swaleha', text:'Useful', createdAt:new DateTime()}]})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:132)
+
+> 1 | db.posts.insertOne({title:'MongoDB tutorial', content:'Relationships in mongoDB', author:'Shivam', comments:[{author:'sagar:, text:'Nice', createdAt:new DateTime()}, {author:'Swaleha', text:'Useful', createdAt:new DateTime()}]})
+    |                                                                                                                                     ^
+  2 |
+
+companyDB> db.posts.insertOne({title:'MongoDB tutorial', content:'Relationships in mongoDB', author:'Shivam', comments:[{author:'sagar:, text:'Nice', createdAt:new Date()}, {author:'Swaleha', text:'Useful', createdAt:new Date()}]})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:132)
+
+> 1 | db.posts.insertOne({title:'MongoDB tutorial', content:'Relationships in mongoDB', author:'Shivam', comments:[{author:'sagar:, text:'Nice', createdAt:new Date()}, {author:'Swaleha', text:'Useful', createdAt:new Date()}]})
+    |                                                                                                                                     ^
+  2 |
+
+companyDB> db.posts.insertOne({title:'MongoDB tutorial', content:'Relationships in mongoDB', author:'Shivam', comments:[{author:'sagar', text:'Nice', createdAt:new Date()}, {author:'Swaleha', text:'Useful', createdAt:new Date()}]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('68bac7eae77d00b64e73518a')
+}
+companyDB> db.posts.find()
+[
+  {
+    _id: ObjectId('68bac7eae77d00b64e73518a'),
+    title: 'MongoDB tutorial',
+    content: 'Relationships in mongoDB',
+    author: 'Shivam',
+    comments: [
+      {
+        author: 'sagar',
+        text: 'Nice',
+        createdAt: ISODate('2025-09-05T11:22:18.574Z')
+      },
+      {
+        author: 'Swaleha',
+        text: 'Useful',
+        createdAt: ISODate('2025-09-05T11:22:18.574Z')
+      }
+    ]
+  }
+]
+companyDB> db.books.insertOne({title:'Get started with MongoDb', price:1000, author_id:ObjectId('68bac637e77d00b64e735189')})
+{
+  acknowledged: true,
+  insertedId: ObjectId('68bac938e77d00b64e73518b')
+}
+companyDB> db.books.find()
+[
+  {
+    _id: ObjectId('68bac938e77d00b64e73518b'),
+    title: 'Get started with MongoDb',
+    price: 1000,
+    author_id: ObjectId('68bac637e77d00b64e735189')
+  }
+]
+companyDB> show collections
+books
+employees
+posts
+users
+companyDB> db.books.find({author_id:ObjectId('68bac637e77d00b64e735189')})
+[
+  {
+    _id: ObjectId('68bac938e77d00b64e73518b'),
+    title: 'Get started with MongoDb',
+    price: 1000,
+    author_id: ObjectId('68bac637e77d00b64e735189')
+  }
+]
+companyDB> db.courses.insertMany([{name:'AIFS', duration:'6 months', trainer:'Shivam'}, {name:'CDEC', duration:'5 months', trainer:'Kuldeep'}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68bacae6e77d00b64e73518c'),
+    '1': ObjectId('68bacae6e77d00b64e73518d')
+  }
+}
+companyDB> db.courses.find()
+[
+  {
+    _id: ObjectId('68bacae6e77d00b64e73518c'),
+    name: 'AIFS',
+    duration: '6 months',
+    trainer: 'Shivam'
+  },
+  {
+    _id: ObjectId('68bacae6e77d00b64e73518d'),
+    name: 'CDEC',
+    duration: '5 months',
+    trainer: 'Kuldeep'
+  }
+]
+companyDB> db.students.insertOne({name:'Sagar', course_id:[ObjectId('68bacae6e77d00b64e73518c'), ObjectId('68bacae6e77d00b64e73518d')]})
+{
+  acknowledged: true,
+  insertedId: ObjectId('68bacb40e77d00b64e73518e')
+}
+companyDB> db.students.find()
+[
+  {
+    _id: ObjectId('68bacb40e77d00b64e73518e'),
+    name: 'Sagar',
+    course_id: [
+      ObjectId('68bacae6e77d00b64e73518c'),
+      ObjectId('68bacae6e77d00b64e73518d')
+    ]
+  }
+]
+
+
+
+
+-------------------------------------------------
+
+
+
+companyDB> for(let i=0; i<1000;i++){db.items.insertOne({name:'item'+i, price:Math.floor(Math.random()*1000)})}
+{
+  acknowledged: true,
+  insertedId: ObjectId('68bacd88e77d00b64e735576')
+}
+companyDB> db.items.find()
+[
+  {
+    _id: ObjectId('68bacd87e77d00b64e73518f'),
+    name: 'item0',
+    price: 710
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e735190'),
+    name: 'item1',
+    price: 774
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e735191'),
+    name: 'item2',
+    price: 43
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e735192'),
+    name: 'item3',
+    price: 253
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e735193'),
+    name: 'item4',
+    price: 114
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e735194'),
+    name: 'item5',
+    price: 812
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e735195'),
+    name: 'item6',
+    price: 335
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e735196'),
+    name: 'item7',
+    price: 518
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e735197'),
+    name: 'item8',
+    price: 631
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e735198'),
+    name: 'item9',
+    price: 734
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e735199'),
+    name: 'item10',
+    price: 363
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e73519a'),
+    name: 'item11',
+    price: 806
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e73519b'),
+    name: 'item12',
+    price: 139
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e73519c'),
+    name: 'item13',
+    price: 897
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e73519d'),
+    name: 'item14',
+    price: 400
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e73519e'),
+    name: 'item15',
+    price: 218
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e73519f'),
+    name: 'item16',
+    price: 712
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e7351a0'),
+    name: 'item17',
+    price: 977
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e7351a1'),
+    name: 'item18',
+    price: 618
+  },
+  {
+    _id: ObjectId('68bacd87e77d00b64e7351a2'),
+    name: 'item19',
+    price: 744
+  }
+]
+Type "it" for more
+companyDB> db.items.aggregate([{$group:{_id:"total_price", totalPrice:{$sum:'price'}}}])
+[ { _id: 'total_price', totalPrice: 0 } ]
+companyDB> db.items.aggregate([{$group:{_id:"total_price", totalPrice:{$sum:'$price'}}}])
+[ { _id: 'total_price', totalPrice: 500072 } ]
+companyDB> db.items.aggregate([{$group:{_id:"total_price", totalItems:{$sum:'$items'}}}])
+[ { _id: 'total_price', totalItems: 0 } ]
+companyDB> db.items.aggregate([{$group:{_id:"total", totalItems:{$sum:'$name'}}}])
+[ { _id: 'total', totalItems: 0 } ]
+companyDB> db.items.aggregate([{$group:{_id:"total", totalItems:{$count:'$name'}}}])
+MongoServerError[TypeMismatch]: $count takes no arguments, i.e. $count:{}
+companyDB> db.items.aggregate([{$count:'$name'}])
+MongoServerError[Location40158]: the count field cannot be a $-prefixed path
+companyDB> db.items.aggregate([{$count:'name'}])
+[ { name: 1000 } ]
+companyDB> db.items.aggregate([{$group:{_id:"avg_price", avgPrice:{$avg:'$price'}}}])
+[ { _id: 'avg_price', avgPrice: 500.072 } ]
+companyDB> db.items.aggregate([{$group:{_id:"avg_price", avgPrice:{$min:'$price'}}}])
+[ { _id: 'avg_price', avgPrice: 0 } ]
+companyDB> db.items.aggregate([{$group:{_id:"avg_price", avgPrice:{$max:'$price'}}}])
+[ { _id: 'avg_price', avgPrice: 998 } ]
