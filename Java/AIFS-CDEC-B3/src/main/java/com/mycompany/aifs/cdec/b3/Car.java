@@ -47,6 +47,7 @@ public class Car {
         show();
     }
     
-    
+    //Variables - instance, local, static
+    //methods - instance, static
 
 }
