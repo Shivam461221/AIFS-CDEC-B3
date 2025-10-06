@@ -1,0 +1,5 @@
+com\mycompany\exceptionhandling\unchecked\ArithmeticException.class
+com\mycompany\exceptionhandling\ExceptionHandling.class
+com\mycompany\exceptionhandling\unchecked\ArrayBound.class
+com\mycompany\exceptionhandling\unchecked\Mismatch.class
+com\mycompany\exceptionhandling\unchecked\NullPointer.class
