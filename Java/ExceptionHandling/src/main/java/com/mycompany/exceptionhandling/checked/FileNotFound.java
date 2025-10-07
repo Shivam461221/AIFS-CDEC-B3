@@ -21,7 +21,7 @@ public class FileNotFound {
             
           //  fr.close();
         }
-        catch(Exception e){
+        catch(FileNotFoundException e){
             System.out.println("Please provide right path");
         }
         
