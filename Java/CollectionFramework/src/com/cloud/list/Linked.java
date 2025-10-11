@@ -6,6 +6,17 @@ import java.util.List;
 public class Linked {
 	public static void main(String[] args) {
 		
-		List<String> list = new LinkedList<>();
+		LinkedList<String> list = new LinkedList<>();
+		
+		list.add("Mango");
+		list.add("Banana");
+		
+		list.addFirst("Apple");
+		list.addLast("Watermelon");
+		
+		System.out.println(list);
+		
+		list.removeLast();
+		System.out.println(list);
 	}
 }
