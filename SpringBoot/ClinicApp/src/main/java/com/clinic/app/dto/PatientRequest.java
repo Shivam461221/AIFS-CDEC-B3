@@ -1,5 +1,7 @@
 package com.clinic.app.dto;
 
+import java.time.LocalDate;
+
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -14,6 +16,9 @@ public class PatientRequest {
 
 	    @NotBlank(message = "Sex is required")
 	    private String sex;
+	    
+	    @NotBlank(message = "Appointment Date is required")
+	    private LocalDate appointmentDate;
 
 	    @NotBlank(message = "Phone number is required")
 	    @Size(min = 10, max = 10, message = "Phone should be 10 digits")
@@ -23,20 +28,37 @@ public class PatientRequest {
 
 	    // For mapping to doctor/receptionist
 	    private Long receptionistId;
+	    
 	    private Long doctorId;
+	    
+		
 		public PatientRequest(@NotBlank(message = "Name is required") String name,
 				@Min(value = 1, message = "Invalid age") Integer age, @NotBlank(message = "Sex is required") String sex,
+				@NotBlank(message = "Appointment Date is required") LocalDate appointmentDate,
 				@NotBlank(message = "Phone number is required") @Size(min = 10, max = 10, message = "Phone should be 10 digits") String phone,
 				String diagnosis, Long receptionistId, Long doctorId) {
 			super();
 			this.name = name;
 			this.age = age;
 			this.sex = sex;
+			this.appointmentDate = appointmentDate;
 			this.phone = phone;
 			this.diagnosis = diagnosis;
 			this.receptionistId = receptionistId;
 			this.doctorId = doctorId;
 		}
+		
+		
+		public LocalDate getAppointmentDate() {
+			return appointmentDate;
+		}
+
+
+		public void setAppointmentDate(LocalDate appointmentDate) {
+			this.appointmentDate = appointmentDate;
+		}
+
+
 		public PatientRequest() {
 			super();
 			// TODO Auto-generated constructor stub

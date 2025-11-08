@@ -49,6 +49,8 @@ public class AuthService {
 	}
 
 	public AuthResponse register(RegisterUserRequest request) {
+		
+		System.out.println(request);
 
 		if (userRepository.findByEmail(request.getEmail()).isPresent()) {
 			throw new RuntimeException("Email already exists!");
@@ -65,7 +67,7 @@ public class AuthService {
 					.orElseThrow(() -> new ResourceNotFoundException("Doctor not found"));
 			user.setDoctor(doctor);
 		}
-
+		System.out.println("User details "+user);
 		User savedUser = userRepository.save(user);
 
 		String token = jwtUtils

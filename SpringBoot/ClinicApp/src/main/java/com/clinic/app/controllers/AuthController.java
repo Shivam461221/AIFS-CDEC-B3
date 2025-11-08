@@ -36,4 +36,16 @@ public class AuthController {
 	    public ResponseEntity<AuthResponse> register(@RequestBody @Valid RegisterUserRequest request) {
 	        return ResponseEntity.ok(authService.register(request));
 	    }
+	    
+//	    @PostMapping("/register")
+//	    public ResponseEntity<AuthResponse> register(@RequestBody @Valid RegisterUserRequest request,
+//	                                                 Authentication auth) {
+//	        System.out.println(">>> Auth in controller: " + auth);
+//	        if (auth != null) {
+//	            System.out.println(">>> Name: " + auth.getName());
+//	            System.out.println(">>> Authorities: " + auth.getAuthorities());
+//	        }
+//	        return ResponseEntity.ok(authService.register(request));
+//	    }
+
 }

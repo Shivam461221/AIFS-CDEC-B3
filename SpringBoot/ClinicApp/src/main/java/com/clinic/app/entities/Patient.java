@@ -1,5 +1,7 @@
 package com.clinic.app.entities;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +22,8 @@ public class Patient {
 	private String phone;
 	private String diagnosis;
 	
+	private LocalDate appointmentDate;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "receptionist_id")
     private User receptionist; // Who registered this patient
@@ -28,8 +32,18 @@ public class Patient {
     @JoinColumn(name = "doctor_id")
     private User doctor; // Assigned doctor
 
-	public Patient(Long id, String name, String sex, Integer age, String phone, String diagnosis, User receptionist,
-			User doctor) {
+	
+
+	public LocalDate getAppointmentDate() {
+		return appointmentDate;
+	}
+
+	public void setAppointmentDate(LocalDate appointmentDate) {
+		this.appointmentDate = appointmentDate;
+	}
+
+	public Patient(Long id, String name, String sex, Integer age, String phone, String diagnosis,
+			LocalDate appointmentDate, User receptionist, User doctor) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -37,6 +51,7 @@ public class Patient {
 		this.age = age;
 		this.phone = phone;
 		this.diagnosis = diagnosis;
+		this.appointmentDate = appointmentDate;
 		this.receptionist = receptionist;
 		this.doctor = doctor;
 	}
