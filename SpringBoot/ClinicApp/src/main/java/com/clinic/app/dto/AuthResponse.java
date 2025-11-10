@@ -7,6 +7,7 @@ public class AuthResponse {
     private Long id;
     private String email;
     private Role role;
+    
 	public AuthResponse(String token, Long id, String email, Role role) {
 		super();
 		this.token = token;

@@ -58,7 +58,7 @@ public class SecurityConfig {
 
 		http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**", "/patients/**").permitAll()
-						.requestMatchers("/receptionist/**").hasAnyRole("RECEPTIONIST", "ADMIN")
+						.requestMatchers("/receptionist/**").hasAnyRole("RECEPTIONIST", "DOCTOR", "ADMIN")
 						.requestMatchers("/doctor/**").hasAnyRole("DOCTOR", "ADMIN").requestMatchers("/admin/**")
 						.hasRole("ADMIN").anyRequest().authenticated())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

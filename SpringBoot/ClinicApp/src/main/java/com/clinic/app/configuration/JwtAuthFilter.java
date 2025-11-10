@@ -34,39 +34,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 		return path.startsWith("/auth/login"); // ✅ Skip JWT validation for login/register
 	}
 
-//	@Override
-//	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-//			throws ServletException, IOException {
-//
-//		final String authHeader = request.getHeader("Authorization");
-//		String token = null;
-//		String username = null;
-//
-//		// ✅ Check if Authorization header contains a Bearer token
-//		if (authHeader != null && authHeader.startsWith("Bearer ")) {
-//			token = authHeader.substring(7); // Remove "Bearer "
-//			username = jwtUtils.extractUsername(token);
-//		}
-//
-//		// ✅ Authenticate only if username is valid and not already authenticated
-//		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-//
-//			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-//
-//			if (jwtUtils.isTokenValid(token, userDetails)) {
-//
-//				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails,
-//						null, userDetails.getAuthorities());
-//
-//				authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//
-//				SecurityContextHolder.getContext().setAuthentication(authToken);
-//			}
-//		}
-//
-//		filterChain.doFilter(request, response);
-//	}
-
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
@@ -83,27 +50,34 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
 			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-			System.out.println("🟢 Username from token: " + username);
-			System.out.println("🟢 Checking token validity for: " + userDetails.getUsername());
 			if (jwtUtils.isTokenValid(token, userDetails)) {
-				System.out.println("🟢 Token validated successfully!");
-				// ✅ Extract role from token claim
-				String role = jwtUtils.extractAllClaims(token).get("role", String.class);
+				
+           
+
+				
+				//String role = jwtUtils.extractAllClaims(token).get("role", String.class);
+				//int userId = jwtUtils.extractAllClaims(token).get("id", Integer.class);
+				
+				 Long userId = jwtUtils.extractUserId(token);
+				  String role = jwtUtils.extractUserRole(token);
+				  
+				  if (!role.startsWith("ROLE_")) role = "ROLE_" + role;
 
 				// ✅ Build authority from role
 				SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
 				List<SimpleGrantedAuthority> authorities = List.of(authority);
-				
-				
 
 				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails,
-						null, authorities);
+						userId, List.of(authority));
 
 				authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
 				SecurityContextHolder.getContext().setAuthentication(authToken);
 				
-				
+				System.out.println("✅ Authenticated: " + username);
+	            System.out.println("✅ Extracted userId from token: " + userId);
+	            System.out.println("✅ Role: " + role);
+
 			}
 		}
 

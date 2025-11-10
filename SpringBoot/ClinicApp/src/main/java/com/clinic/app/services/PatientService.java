@@ -72,5 +72,10 @@ public class PatientService {
             throw new ResourceNotFoundException("Patient not found");
         patientRepository.deleteById(id);
     }
+    
+    
+    //Update patient details
+    
+    //getById 
 }
 

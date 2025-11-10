@@ -1,6 +1,6 @@
 package com.clinic.app.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
@@ -9,7 +9,9 @@ public class AppointmentRequest {
 
 	@NotNull(message = "Appointment date is required")
 	@Future(message = "Appointment date must be in the future")
-	private LocalDate appointmentDate;
+	private LocalDateTime appointmentDateTime;
+	
+	private String reason;
 
 	@NotNull(message = "Patient ID is required")
 	private Long patientId;
@@ -18,29 +20,40 @@ public class AppointmentRequest {
 	private Long doctorId;
 
 	private Long receptionistId; // if booked by receptionist
-
-	public AppointmentRequest(
-			@NotNull(message = "Appointment date is required") @Future(message = "Appointment date must be in the future") LocalDate appointmentDate,
-			@NotNull(message = "Patient ID is required") Long patientId,
-			@NotNull(message = "Doctor ID is required") Long doctorId, Long receptionistId) {
-		super();
-		this.appointmentDate = appointmentDate;
-		this.patientId = patientId;
-		this.doctorId = doctorId;
-		this.receptionistId = receptionistId;
-	}
+	
+	
 
 	public AppointmentRequest() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public LocalDate getAppointmentDate() {
-		return appointmentDate;
+	public AppointmentRequest(
+			@NotNull(message = "Appointment date is required") @Future(message = "Appointment date must be in the future") LocalDateTime appointmentDateTime,
+			String reason, @NotNull(message = "Patient ID is required") Long patientId,
+			@NotNull(message = "Doctor ID is required") Long doctorId, Long receptionistId) {
+		super();
+		this.appointmentDateTime = appointmentDateTime;
+		this.reason = reason;
+		this.patientId = patientId;
+		this.doctorId = doctorId;
+		this.receptionistId = receptionistId;
 	}
 
-	public void setAppointmentDate(LocalDate appointmentDate) {
-		this.appointmentDate = appointmentDate;
+	public LocalDateTime getAppointmentDateTime() {
+		return appointmentDateTime;
+	}
+
+	public void setAppointmentDateTime(LocalDateTime appointmentDateTime) {
+		this.appointmentDateTime = appointmentDateTime;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
 	}
 
 	public Long getPatientId() {
@@ -66,5 +79,7 @@ public class AppointmentRequest {
 	public void setReceptionistId(Long receptionistId) {
 		this.receptionistId = receptionistId;
 	}
+
+	
 
 }
