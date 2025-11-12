@@ -1,0 +1,415 @@
+{
+	"info": {
+		"_postman_id": "c89fdeea-7396-429d-aadc-e2f839787499",
+		"name": "ClinicAppJava",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34971905"
+	},
+	"item": [
+		{
+			"name": "Login-Admin/Doctor/Receptionist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"admin@gmail.com\",\r\n  \"password\": \"admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterDoctor-Admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlkIjoyLCJpYXQiOjE3NjI1MTY0NTYsImV4cCI6MTc2MjYwMjg1Nn0.vv1a_p9xiVqH4CMUovcv8ACRrlZwcGNvzwduB93gmtA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Pallavi\",\r\n  \"email\": \"pallavi@gmail.com\",\r\n  \"password\":\"12345\",\r\n  \"role\":\"ROLE_DOCTOR\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Receptionist-Doctor/Admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYWdhckBnbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9ET0NUT1IiLCJpZCI6NCwiaWF0IjoxNzYyNzc1NDYzLCJleHAiOjE3NjI4NjE4NjN9.0Cls5YrXdxmZvqu60uuxFGXskolmZeEmZKAdIw2n_hI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Aman Receptionist\",\r\n  \"email\": \"aman@gmail.com\",\r\n  \"password\": \"12345\",\r\n  \"phone\": \"9876543201\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/receptionist/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"receptionist",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Book Appointment-Patient",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlkIjoyLCJpYXQiOjE3NjI1MTY0NTYsImV4cCI6MTc2MjYwMjg1Nn0.vv1a_p9xiVqH4CMUovcv8ACRrlZwcGNvzwduB93gmtA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Kuldeep\",\r\n  \"age\":\"25\",\r\n  \"sex\":\"male\",\r\n  \"appointmentDate\":\"2025-11-08\",\r\n  \"diagnosis\":\"Flu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/patients/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patients",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllDoctors-Admin",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlkIjoyLCJpYXQiOjE3NjI5NDYyNDIsImV4cCI6MTc2MzAzMjY0Mn0.T2ocfQRhK7Ae-0Z-9EX7wB8sRHBDLHdjVbrJY5sDri8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/doctor/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doctor",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ViewProfile-Doctor",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaGl2YW1AZ21haWwuY29tIiwicm9sZSI6IlJPTEVfRE9DVE9SIiwiaWQiOjMsImlhdCI6MTc2Mjk0NjMzMiwiZXhwIjoxNzYzMDMyNzMyfQ.z81K2sgv8IWDeXeKM8alO1pgC_pLOxlfu9btBzgMlEI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/doctor/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doctor",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllReceptionist-Doctor",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYWdhckBnbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9ET0NUT1IiLCJpZCI6NCwiaWF0IjoxNzYyOTQ2ODI4LCJleHAiOjE3NjMwMzMyMjh9.Qm40mfuRdcRX1xuZkXQg2N_0Esz5arUMBv71wgslok4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/doctor/receptionists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doctor",
+						"receptionists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddPatient-Receptionist",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbWFuQGdtYWlsLmNvbSIsInJvbGUiOiJST0xFX1JFQ0VQVElPTklTVCIsImlkIjo2LCJpYXQiOjE3NjI5NDcxNDcsImV4cCI6MTc2MzAzMzU0N30.21DrJSk7N9mEmtMcctg75zYFxnqbFOhZsJknozKiWS4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Om\",\r\n  \"age\":\"22\",\r\n  \"sex\":\"male\",\r\n  \"phone\":\"97651213125\",\r\n  \"appointmentDate\":\"2025-11-12\",\r\n  \"diagnosis\":\"Typhoid\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/patients/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patients",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GellOwnPatients-Doctor",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYWdhckBnbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9ET0NUT1IiLCJpZCI6NCwiaWF0IjoxNzYyOTQ3MzI2LCJleHAiOjE3NjMwMzM3MjZ9.evhzLk9pVgZtBcpqOJkt74OPg17nP5wA-1dddPCYCEw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Om\",\r\n  \"age\":\"22\",\r\n  \"sex\":\"male\",\r\n  \"phone\":\"97651213125\",\r\n  \"appointmentDate\":\"2025-11-12\",\r\n  \"diagnosis\":\"Typhoid\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/doctor/patients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doctor",
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteDoctor-Admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlkIjoyLCJpYXQiOjE3NjI5NDc0MzgsImV4cCI6MTc2MzAzMzgzOH0.1hOqQLzmnC_Mt8HRAPFDOm0QdlLYybjSrRk8yL3kjIY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Om\",\r\n  \"age\":\"22\",\r\n  \"sex\":\"male\",\r\n  \"phone\":\"97651213125\",\r\n  \"appointmentDate\":\"2025-11-12\",\r\n  \"diagnosis\":\"Typhoid\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/doctor/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doctor",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "ViewOwnPatients-Receptionist",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbWFuQGdtYWlsLmNvbSIsInJvbGUiOiJST0xFX1JFQ0VQVElPTklTVCIsImlkIjo2LCJpYXQiOjE3NjI5NDc5NTgsImV4cCI6MTc2MzAzNDM1OH0.aMckMJ8fa7f0ZhxOnkiVTZRbPCWfiKN5islEg1WX7Sw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patients/my",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patients",
+						"my"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

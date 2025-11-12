@@ -64,13 +64,17 @@ public class ReceptionistController {
         return ResponseEntity.ok("Receptionist deleted successfully");
     }
     
-    @PreAuthorize("hasRole('DOCTOR')")
-    @GetMapping("/my")
-    public ResponseEntity<List<User>> getDoctorReceptionists() {
-        Long doctorId = getLoggedInUserId(); // ✅ now fetched from JWT
-        System.out.println("🩺 Doctor ID from token: " + doctorId);
-        return ResponseEntity.ok(receptionistService.getReceptionistsByDoctor(doctorId));
-    }
+    //view own profile
+    
+    
+    
+//    @PreAuthorize("hasRole('DOCTOR')")
+//    @GetMapping("/my")
+//    public ResponseEntity<List<User>> getDoctorReceptionists() {
+//        Long doctorId = getLoggedInUserId(); // ✅ now fetched from JWT
+//        System.out.println("🩺 Doctor ID from token: " + doctorId);
+//        return ResponseEntity.ok(receptionistService.getReceptionistsByDoctor(doctorId));
+//    }
 
     private Long getUserIdFromPrincipal() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

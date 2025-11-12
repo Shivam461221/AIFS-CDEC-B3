@@ -1,12 +1,14 @@
 package com.clinic.app.controllers;
 
-import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,71 +28,97 @@ import com.clinic.app.services.AppointmentService;
 @CrossOrigin
 public class AppointmentController {
 
-    @Autowired
-    private AppointmentService appointmentService;
+	 @Autowired
+	    private AppointmentService appointmentService;
 
-    // ✅ Public: book appointment (patient)
-    @PostMapping("/book")
-    public ResponseEntity<Appointment> bookAppointment(@RequestParam Long patientId,
-                                                       @RequestParam Long doctorId,
-                                                       @RequestParam String reason,
-                                                       @RequestParam LocalDateTime dateTime) {
-        return ResponseEntity.ok(appointmentService.bookAppointment(patientId, doctorId, dateTime, reason));
-    }
+	    // ✅ Public: patient can book appointment (no authentication required)
+	    @PostMapping("/book")
+	    public ResponseEntity<Appointment> bookAppointment(
+	            @RequestParam Long patientId,
+	            @RequestParam Long doctorId,
+	            @RequestParam String reason,
+	            @RequestParam LocalDateTime dateTime) {
 
-    // ✅ Receptionist: add appointment manually
-    @PreAuthorize("hasRole('RECEPTIONIST')")
-    @PostMapping("/add")
-    public ResponseEntity<Appointment> addAppointment(@RequestParam Long patientId,
-                                                      @RequestParam Long doctorId,
-                                                      @RequestParam String reason,
-                                                      @RequestParam LocalDateTime dateTime,
-                                                      Principal principal) {
-        Long receptionistId = getUserIdFromPrincipal(principal);
-        return ResponseEntity.ok(appointmentService.addAppointmentByReceptionist(patientId, doctorId, receptionistId, dateTime, reason));
-    }
+	        System.out.println("📅 Public booking: patientId=" + patientId + ", doctorId=" + doctorId);
+	        return ResponseEntity.ok(appointmentService.bookAppointment(patientId, doctorId, dateTime, reason));
+	    }
 
-    // ✅ Doctor: update appointment status
-    @PreAuthorize("hasRole('DOCTOR')")
-    @PutMapping("/{id}/status")
-    public ResponseEntity<Appointment> updateStatus(@PathVariable Long id,
-                                                    @RequestParam AppointmentStatus status) {
-        return ResponseEntity.ok(appointmentService.updateAppointmentStatus(id, status));
-    }
+	    // ✅ Receptionist: add appointment manually
+	    @PreAuthorize("hasRole('RECEPTIONIST')")
+	    @PostMapping("/add")
+	    public ResponseEntity<Appointment> addAppointment(
+	            @RequestParam Long patientId,
+	            @RequestParam Long doctorId,
+	            @RequestParam String reason,
+	            @RequestParam LocalDateTime dateTime) {
 
-    // ✅ Doctor: view own appointments
-    @PreAuthorize("hasRole('DOCTOR')")
-    @GetMapping("/doctor")
-    public ResponseEntity<List<Appointment>> getDoctorAppointments(Principal principal) {
-        Long doctorId = getUserIdFromPrincipal(principal);
-        return ResponseEntity.ok(appointmentService.getAppointmentsForDoctor(doctorId));
-    }
+	        Long receptionistId = getLoggedInUserId();
+	        System.out.println("💼 Receptionist (id=" + receptionistId + ") adding appointment for doctorId=" + doctorId);
 
-    // ✅ Receptionist: view their appointments
-    @PreAuthorize("hasRole('RECEPTIONIST')")
-    @GetMapping("/receptionist")
-    public ResponseEntity<List<Appointment>> getReceptionistAppointments(Principal principal) {
-        Long receptionistId = getUserIdFromPrincipal(principal);
-        return ResponseEntity.ok(appointmentService.getAppointmentsForReceptionist(receptionistId));
-    }
+	        return ResponseEntity.ok(
+	                appointmentService.addAppointmentByReceptionist(patientId, doctorId, receptionistId, dateTime, reason));
+	    }
 
-    // ✅ Patient: view their appointments
-    @GetMapping("/patient/{id}")
-    public ResponseEntity<List<Appointment>> getPatientAppointments(@PathVariable Long id) {
-        return ResponseEntity.ok(appointmentService.getAppointmentsForPatient(id));
-    }
+	    // ✅ Doctor: update appointment status
+	    @PreAuthorize("hasAnyRole('DOCTOR', 'RECEPTIONIST')")
+	    @PutMapping("/{id}/status")
+	    public ResponseEntity<Appointment> updateStatus(
+	            @PathVariable Long id,
+	            @RequestParam AppointmentStatus status) {
 
-    // ✅ Admin/Doctor: delete appointment
-    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteAppointment(@PathVariable Long id) {
-        appointmentService.deleteAppointment(id);
-        return ResponseEntity.ok("Appointment deleted successfully");
-    }
+	        System.out.println("🩺 Updating status for appointmentId=" + id + " to " + status);
+	        return ResponseEntity.ok(appointmentService.updateAppointmentStatus(id, status));
+	    }
 
-    // Temporary mock
-    private Long getUserIdFromPrincipal(Principal principal) {
-        // TODO: Extract user ID from JWT claims in future
-        return 1L;
-    }
+	    // ✅ Doctor: view own appointments
+	    @PreAuthorize("hasRole('DOCTOR')")
+	    @GetMapping("/doctor")
+	    public ResponseEntity<List<Appointment>> getDoctorAppointments() {
+	        Long doctorId = getLoggedInUserId();
+	        System.out.println("🩺 Fetching appointments for doctorId=" + doctorId);
+	        return ResponseEntity.ok(appointmentService.getAppointmentsForDoctor(doctorId));
+	    }
+
+	    // ✅ Receptionist: view their appointments
+	    @PreAuthorize("hasRole('RECEPTIONIST')")
+	    @GetMapping("/receptionist")
+	    public ResponseEntity<List<Appointment>> getReceptionistAppointments() {
+	        Long receptionistId = getLoggedInUserId();
+	        System.out.println("💼 Fetching appointments for receptionistId=" + receptionistId);
+	        return ResponseEntity.ok(appointmentService.getAppointmentsForReceptionist(receptionistId));
+	    }
+
+	    // ✅ Patient: view their appointments
+	    @GetMapping("/patient/{id}")
+	    public ResponseEntity<List<Appointment>> getPatientAppointments(@PathVariable Long id) {
+	        System.out.println("👤 Fetching appointments for patientId=" + id);
+	        return ResponseEntity.ok(appointmentService.getAppointmentsForPatient(id));
+	    }
+
+	    // ✅ Admin/Doctor: delete appointment
+	    @PreAuthorize("hasAnyRole('ADMIN', 'DOCTOR')")
+	    @DeleteMapping("/{id}")
+	    public ResponseEntity<String> deleteAppointment(@PathVariable Long id) {
+	        boolean isAdmin = isAdminUser();
+	        Long userId = getLoggedInUserId();
+	        System.out.println("🗑️ Deleting appointmentId=" + id + " by userId=" + userId + " (isAdmin=" + isAdmin + ")");
+	        appointmentService.deleteAppointment(id);
+	        return ResponseEntity.ok("Appointment deleted successfully");
+	    }
+
+	    // 🔒 Helper: extract userId from JWT (via SecurityContext)
+	    private Long getLoggedInUserId() {
+	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        Object credentials = auth.getCredentials();
+	        if (credentials instanceof Long) {
+	            return (Long) credentials;
+	        }
+	        return null;
+	    }
+
+	    // 🔒 Helper: check if current user is admin
+	    private boolean isAdminUser() {
+	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        return auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"));
+	    }
 }

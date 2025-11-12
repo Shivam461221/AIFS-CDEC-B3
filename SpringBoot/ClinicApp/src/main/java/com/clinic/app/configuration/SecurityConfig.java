@@ -31,14 +31,6 @@ public class SecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 
-//	@Bean
-//	public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-//	    return http.getSharedObject(AuthenticationManagerBuilder.class)
-//	            .userDetailsService(customUserDetailsService)
-//	            .passwordEncoder(passwordEncoder()) // ✅ Important
-//	            .and()
-//	            .build();
-//	}
 	
 	@Bean
 	public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
